@@ -372,5 +372,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         startActivity(intent);
 
     }
+
+    public void slide(View view) {
+
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
+
+    }
 }
 

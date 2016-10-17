@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffe930</color>
-    <color name="colorPrimaryDark">#ffe930</color>
+    <color name="colorPrimary">#f3d005</color>
+    <color name="colorPrimaryDark">#f3d005</color>
     <color name="colorAccent">#FF4081</color>
     <color name="titleTextColor">#000000</color>
     <color name="myTheme.ActionBar.Text">#000000</color>

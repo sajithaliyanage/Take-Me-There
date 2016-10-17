@@ -58,7 +58,6 @@
         android:scaleType="fitCenter"
         android:layout_weight="0.28" />
 
-
     <!--<TextView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -151,7 +150,9 @@
             android:id="@+id/forgetPassword"
             android:textSize="16sp"
             android:gravity="start"
-            android:linksClickable="true"/>
+            android:linksClickable="true"
+            android:onClick="slide"/>
+
 
         <TextView
             android:layout_marginTop="30dp"
