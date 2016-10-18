@@ -118,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                                 .getLongitude())));
 
                         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(arg0.getLatitude(), arg0.getLongitude()));
-                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
+                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
 
                         animateMarker(mPositionMarker, arg0);
                         mMap.moveCamera(center);
