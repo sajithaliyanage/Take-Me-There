@@ -19,7 +19,6 @@
     </string>
 
     <string-array name="genderTypes">
-        <item>-Select Your Gender -</item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
