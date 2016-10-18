@@ -1,9 +1,11 @@
 package com.example.sajitha.tmt;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
-
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,6 +15,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignupPOST extends AsyncTask<String,Void,String> {
 
@@ -51,6 +55,7 @@ public class SignupPOST extends AsyncTask<String,Void,String> {
                 break;
             }
             return sb.toString();
+
         }
         catch(Exception e){
             return new String("Exception: " + e.getMessage());
