@@ -1,6 +1,9 @@
 package com.example.sajitha.tmt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,6 +72,15 @@ public class Signup extends AppCompatActivity {
         }
 
         if(isDone){
+            final ProgressDialog progress;
+
+            progress = new ProgressDialog(this);
+            progress.setTitle("Please Wait!!");
+            progress.setMessage("Authenticating!!");
+            progress.setCancelable(true);
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progress.show();
+
             String[] arrayOfValue = new String[4];
             arrayOfValue[0] = fullName;
             arrayOfValue[1] = userEmail;
@@ -77,8 +89,19 @@ public class Signup extends AppCompatActivity {
 
 //            myAwesomeTextView.setText(fullName+" - "+userEmail+" - "+password+" - "+userGender);
             new SignupPOST().execute(arrayOfValue);
-            Intent intent = new Intent(Signup.this, SelectRoleActivity.class);
-            startActivity(intent);
+
+            new CountDownTimer(6000, 1000) {
+                public void onFinish() {
+                    progress.dismiss();
+                    // my whole code
+                }
+
+                public void onTick(long millisUntilFinished) {
+                    progress.show();
+                }
+            }.start();
+
+
         }
 
     }
