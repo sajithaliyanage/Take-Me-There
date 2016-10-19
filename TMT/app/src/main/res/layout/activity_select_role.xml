@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.example.sajitha.tmt.SelectRoleActivity">
 
     <ImageView
+        android:layout_marginTop="20dp"
         android:layout_width="246dp"
         android:layout_height="163dp"
         android:id="@+id/splash"
@@ -14,22 +16,18 @@
         android:maxHeight="42dp"
         android:scaleType="fitCenter"
 
-        android:layout_below="@+id/view"
-        android:layout_centerHorizontal="true" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"
-        android:id="@+id/view" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="User ID"
+        android:text="Small Text"
         android:id="@+id/textView2"
         android:layout_below="@+id/splash"
         android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

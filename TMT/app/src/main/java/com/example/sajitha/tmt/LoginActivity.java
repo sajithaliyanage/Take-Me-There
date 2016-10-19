@@ -1,43 +1,15 @@
 package com.example.sajitha.tmt;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 import android.widget.Toast;
 
 
@@ -57,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         activity = this;
     }
 
+    //when pressed SIGN IN button
     public void signInUsers(View v){
         EditText useremail = (EditText)findViewById(R.id.email);
         EditText pswd = (EditText)findViewById(R.id.password);
@@ -67,13 +40,17 @@ public class LoginActivity extends AppCompatActivity {
 
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-        if(userEmail.isEmpty() || !userEmail.matches(emailPattern)){
-            Toast.makeText(context,"Please enter the valid Email", Toast.LENGTH_SHORT).show();
+
+        if (userEmail.isEmpty() || !userEmail.matches(emailPattern)) {
+            Toast.makeText(context, "Please enter the valid Email", Toast.LENGTH_SHORT).show();
             isDone = false;
-        }else if(password.isEmpty()){
-            Toast.makeText(context,"Please enter the  Password", Toast.LENGTH_SHORT).show();
+        } else if (password.isEmpty()) {
+            Toast.makeText(context, "Please enter the  Password", Toast.LENGTH_SHORT).show();
             isDone = false;
+        } else {
+            isDone = true;
         }
+
 
         if(isDone){
             final ProgressDialog progress;
