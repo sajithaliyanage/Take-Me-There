@@ -1,43 +1,46 @@
 package com.example.sajitha.tmt;
 
-public class LoginSession {
-    public static String logStatus =null;
-    public static String userName =null;
-    public static int userID = 0;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
-    LoginSession(String name,int id){
-        logStatus = "Logged";
-        userName = name;
-        userID = id;
+public class LoginSession {
+    Context context;
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String LOG_STATUS = "islogged";
+    public static final String USER_ID = "userid";
+
+    SharedPreferences sharedpreferences;
+
+
+    LoginSession(Context context){
+        this.context = context;
+        sharedpreferences = context.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
     }
 
     public boolean isLogged(){
-        if(logStatus.equals("Logged") && userID!=0){
-            return true;
-        }else{
-            return false;
-        }
+        boolean logged = sharedpreferences.getBoolean(LOG_STATUS, false);
+        return logged;
+    }
+
+    public void setLogged(boolean value, int userid){
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putBoolean(LOG_STATUS, value);
+        editor.putInt(USER_ID, userid);
+        editor.commit();
     }
 
     public void logOut(){
-        logStatus = null;
-        userName = null;
-        userID =0;
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.commit();
     }
 
-    public String getUserName(){
-        if(isLogged()){
-            return userName;
-        }else{
-            return null;
-        }
-    }
-
-    public int getUserID(){
-        if(isLogged()){
-            return userID;
-        }else{
-            return 0;
-        }
+    public int getID(){
+        sharedpreferences= PreferenceManager.getDefaultSharedPreferences(context);
+        int userID = Integer.parseInt(sharedpreferences.getString(USER_ID, null));
+        return userID;
     }
 }

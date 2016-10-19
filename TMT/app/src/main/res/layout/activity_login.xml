@@ -104,7 +104,9 @@
         android:text="@string/action_sign_in"
         android:textStyle="bold"
         android:textColor="#ffffff"
-        android:background="#000"/>
+        android:background="#000"
+        android:clickable="true"
+        android:onClick="signInUsers"/>
 
     <TextView
         android:layout_marginTop="30dp"

@@ -1,6 +1,8 @@
 package com.example.sajitha.tmt;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -23,12 +25,15 @@ import android.widget.Toast;
 public class Signup extends AppCompatActivity {
     private String fullName,userEmail,password,repassword,userGender;
     boolean isDone = true;
+    Context context;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
+        context = this;
+        activity = this;
     }
 
 
@@ -86,9 +91,9 @@ public class Signup extends AppCompatActivity {
             arrayOfValue[1] = userEmail;
             arrayOfValue[2] = password;
             arrayOfValue[3] = userGender;
-
+            Log.i("rr","pp");
 //            myAwesomeTextView.setText(fullName+" - "+userEmail+" - "+password+" - "+userGender);
-            new SignupPOST().execute(arrayOfValue);
+            new SignupPOST(context,activity).execute(arrayOfValue);
 
             new CountDownTimer(6000, 1000) {
                 public void onFinish() {

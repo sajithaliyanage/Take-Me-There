@@ -5,46 +5,37 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.EditText;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class SignupPOST extends AsyncTask<String,Void,String> {
+public class SigninPOST extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
 
-    public SignupPOST(Context context, Activity activity){
+    public SigninPOST(Context context,Activity activity){
         this.context = context;
         this.activity = activity;
     }
+
     @Override
     protected String doInBackground(String... params) {
 
         try{
             //send using post method
-            String username = (String)params[0];
-            String email = (String)params[1];
-            String password = (String)params[2];
-            String gender = (String)params[3];
-//            Log.i("FullName",username);
-//            Log.i("email",email);
+            String email = (String)params[0];
+            String password = (String)params[1];
+            Log.i("FullName",email);
+            Log.i("email",password);
 
-            String link="http://takeyourleave.azurewebsites.net/android/index.php";
-            String data  = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
-            data += "&" + URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
+            String link="http://takeyourleave.azurewebsites.net/android/login.php";
+            String data  = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
-            data += "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -78,13 +69,11 @@ public class SignupPOST extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         String[] values = result.split(",");
-        Log.i("Loggin1", values[0]);
-        //Log.i("Loggin2", values[1]);
-        //Log.i("Loggin3", values[2]);
-        //Log.i("Loggin4", values[3]);
+        Log.i("Loggin - success", values[0]);
+        //Log.i("Loggin2 - success", values[1]);
 
-        //int userID = Integer.parseInt(values[1]);
         if(values[0].equals("done")){
+            //int userID = Integer.parseInt(values[1]);
             Log.i("Loggin","All set");
             int userid = Integer.parseInt(values[1]);
 
@@ -94,9 +83,12 @@ public class SignupPOST extends AsyncTask<String,Void,String> {
             Intent intent = new Intent(context,SelectRoleActivity.class);;
             context.startActivity(intent);
         }else{
-            Log.i("Fail -","All set");
-            Toast.makeText(activity,"User already exists!",Toast.LENGTH_LONG).show();
-            activity.startActivity(new Intent(activity, Signup.class));
+            Toast.makeText(activity,"Invalid username or password" , Toast.LENGTH_LONG).show();
+
+            activity.startActivity(new Intent(activity, LoginActivity.class));
+
+            //Toast.makeText(getApplicationContext(),"My status is"+result,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LoginActivity.this,"Invalid username or password", Toast.LENGTH_SHORT).show();
         }
 
     }
