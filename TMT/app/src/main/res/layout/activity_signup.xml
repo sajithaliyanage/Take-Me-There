@@ -79,7 +79,7 @@
         android:maxLines="1"
         android:singleLine="true" />
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,11 +133,23 @@
         android:text="@string/action_sign_up"
         android:textStyle="bold"
         android:textColor="#ffffff"
-        android:background="#000"/>
-
+        android:background="#000"
+        android:clickable="true"
+        android:onClick="signUpUsers"/>
 
     <TextView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Test"
+        android:id="@+id/test"
+        android:textSize="16sp"
+        android:gravity="start"
+        android:onClick="moveLogin"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -146,6 +158,5 @@
         android:textSize="16sp"
         android:gravity="start"
         android:onClick="moveLogin"/>
-
 
 </LinearLayout>
