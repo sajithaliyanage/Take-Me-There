@@ -13,6 +13,7 @@ public class LoginSession {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String LOG_STATUS = "islogged";
     public static final String USER_ID = "userid";
+    public static final String IS_VEHICLE = "is_vehicle";
 
 
     SharedPreferences sharedpreferences;
@@ -65,5 +66,11 @@ public class LoginSession {
         sharedpreferences= PreferenceManager.getDefaultSharedPreferences(context);
         int userID = Integer.parseInt(sharedpreferences.getString(USER_ID, null));
         return userID;
+    }
+
+    public void setUserMode(boolean x){
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putBoolean(IS_VEHICLE, x);
+        editor.commit();
     }
 }

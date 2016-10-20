@@ -2,6 +2,7 @@ package com.example.sajitha.tmt;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,9 +12,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class SelectRoleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SelectRoleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
     LoginSession sessionLogin;
     Context context;
 
@@ -22,6 +26,12 @@ public class SelectRoleActivity extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selectrole_activity);
         context = this;
+
+        //Select user role
+        ImageButton one = (ImageButton) findViewById(R.id.passenger);
+        one.setOnClickListener(this); // calling onClick() method
+        ImageButton two = (ImageButton) findViewById(R.id.driver);
+        two.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,11 +46,32 @@ public class SelectRoleActivity extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
         sessionLogin = new LoginSession(this);
-        int userid = sessionLogin.sharedpreferences.getInt("userid",0);
-        String x = Integer.toString(userid);
+//        sharedpreferences = sessionLogin.sharedpreferences;
 
-        TextView myAwesomeTextView = (TextView)findViewById(R.id.textView2);
-        myAwesomeTextView.setText(x);
+//        int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+//        String x = Integer.toString(userid);
+//
+//        TextView myAwesomeTextView = (TextView)findViewById(R.id.textView2);
+//        myAwesomeTextView.setText(x);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+            case R.id.passenger:
+                sessionLogin.setUserMode(false);
+                Intent intent1 = new Intent(context,HomeActivity.class);;
+                context.startActivity(intent1);
+                break;
+
+            case R.id.driver:
+                sessionLogin.setUserMode(true);
+                Intent intent2 = new Intent(context,HomeActivity.class);;
+                context.startActivity(intent2);
+                break;
+        }
     }
 
     @Override
