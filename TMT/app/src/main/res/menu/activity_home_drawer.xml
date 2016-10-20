@@ -20,23 +20,24 @@
             android:id="@+id/about"
             android:icon="@drawable/ic_menu_manage"
             android:title="About Us" />
-    </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/chatbox"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Chat" />
-            <item
-                android:id="@+id/nav_slideshow2"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Emergency" />
-            <item
-                android:id="@+id/nav_manage"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Insurance" />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/chatbox"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Chat" />
+        <item
+            android:id="@+id/nav_slideshow2"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Emergency" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Insurance" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_setting_dark"
+            android:title="Logout" />
+
+    </group>
 
 </menu>

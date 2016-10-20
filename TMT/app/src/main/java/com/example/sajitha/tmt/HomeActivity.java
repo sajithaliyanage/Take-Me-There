@@ -6,11 +6,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,7 +23,6 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -41,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.home_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,21 +104,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     @Override
                     public void onMyLocationChange(Location arg0) {
+                        Log.i("Google Maps","location changed");
                         // TODO Auto-generated method stub
-                        mPositionMarker = mMap.addMarker(new MarkerOptions()
-                                .flat(true)
-                                .icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.appicon))
-                                .anchor(0.5f, 0.5f)
-                                .position(
-                                        new LatLng(arg0.getLatitude(), arg0
-                                                .getLongitude())));
-
-                        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(arg0.getLatitude(), arg0.getLongitude()));
+                        LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
+                        CameraUpdate center = CameraUpdateFactory.newLatLng(current);
                         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
+                        if(mPositionMarker!=null){
+                            mPositionMarker.remove();
+                        }
+                        mPositionMarker = mMap.addMarker(new MarkerOptions()
+                                .position(current)
+                                .title("My Location")
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon)));
 
-                        animateMarker(mPositionMarker, arg0);
-                        mMap.moveCamera(center);
+                        //animateMarker(mPositionMarker, arg0);
+                        //mMap.moveCamera(center);
                         mMap.animateCamera(zoom);
 
                     }

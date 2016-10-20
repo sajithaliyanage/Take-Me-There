@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean isDone = true;
     Context context;
     Activity activity;
-
+    LoginSession sessionLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         context = this;
         activity = this;
+        sessionLogin = new LoginSession(this);
+        int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+
+        String x = Integer.toString(userid);
+        if(userid!=0){
+            Intent intent = new Intent(context,SelectRoleActivity.class);;
+            context.startActivity(intent);
+        }
     }
 
     //when pressed SIGN IN button
