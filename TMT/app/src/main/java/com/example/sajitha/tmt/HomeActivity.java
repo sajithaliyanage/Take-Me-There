@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(6.9029514,79.8608261);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in UCSC"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14.0f));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14.0f));
 
     }
     @Override
@@ -110,9 +110,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public void onMyLocationChange(Location arg0) {
                         Log.i("Google Maps","location changed");
                         // TODO Auto-generated method stub
-                        LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
-                        CameraUpdate center = CameraUpdateFactory.newLatLng(current);
-                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
+                        //LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
+
+
                         if(mPositionMarker!=null){
                             mPositionMarker.remove();
                         }
@@ -123,19 +123,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         //String x = Integer.toString(userid);
                         if(!userMode){
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
-                                    .position(current)
-                                    .title("My Location")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                                    .flat(true)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man))
+                                    .anchor(0.5f, 0.5f)
+                                    .position( new LatLng(arg0.getLatitude(), arg0.getLongitude())));
                         }else{
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
-                                    .position(current)
-                                    .title("My Location")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon)));
+                                    .flat(true)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon))
+                                    .anchor(0.5f, 0.5f)
+                                    .position( new LatLng(arg0.getLatitude(), arg0.getLongitude())));
                         }
 
+                        CameraUpdate center = CameraUpdateFactory.newLatLng( new LatLng(arg0.getLatitude(), arg0.getLongitude()));
+                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
 
-                        //animateMarker(mPositionMarker, arg0);
-                        //mMap.moveCamera(center);
+                        animateMarker(mPositionMarker, arg0);
+                        mMap.moveCamera(center);
                         mMap.animateCamera(zoom);
 
                     }
