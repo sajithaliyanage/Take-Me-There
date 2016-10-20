@@ -1,6 +1,8 @@
 package com.example.sajitha.tmt;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -32,13 +34,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
     private GoogleMap mMap;
-    private Marker mPositionMarker;;
+    private Marker mPositionMarker;
+    Context context;
+    SharedPreferences sharedPreferences;
+    LoginSession sessionLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
-
+        context = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -101,7 +106,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
                 mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-
                     @Override
                     public void onMyLocationChange(Location arg0) {
                         Log.i("Google Maps","location changed");
@@ -112,10 +116,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         if(mPositionMarker!=null){
                             mPositionMarker.remove();
                         }
-                        mPositionMarker = mMap.addMarker(new MarkerOptions()
-                                .position(current)
-                                .title("My Location")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon)));
+                        sessionLogin = new LoginSession(context);
+                        sharedPreferences = sessionLogin.sharedpreferences;
+
+                        boolean userMode = sessionLogin.sharedpreferences.getBoolean("is_vehicle",false);
+                        //String x = Integer.toString(userid);
+                        if(!userMode){
+                            mPositionMarker = mMap.addMarker(new MarkerOptions()
+                                    .position(current)
+                                    .title("My Location")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                        }else{
+                            mPositionMarker = mMap.addMarker(new MarkerOptions()
+                                    .position(current)
+                                    .title("My Location")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon)));
+                        }
+
 
                         //animateMarker(mPositionMarker, arg0);
                         //mMap.moveCamera(center);
@@ -190,20 +207,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow2) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.about) {
-
-        } else if (id == R.id.chatbox) {
-
-        }
+        StaticImports.navigate_menu(id,context);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -1,29 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mode_selection"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.sajitha.tmt.SelectRoleActivity"
-    tools:showIn="@layout/selectrole_app_bar">
+    android:orientation="vertical"
+    android:background="#FFD700"
+    tools:context="com.example.sajitha.tmt.SelectRoleActivity">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/passenger"
-        android:clickable="true"
-        android:src="@drawable/appicon"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/driver"
-        android:layout_below="@+id/passenger"
-        android:layout_toRightOf="@+id/passenger"
-        android:layout_toEndOf="@+id/passenger"
-        android:clickable="true"
-        android:src="@drawable/ic_menu_share"/>
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            app:srcCompat="@drawable/mode_selection_car"
+            android:scaleType="fitCenter"
+            android:paddingStart="70dp"
+            android:paddingEnd="70dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/driver"
+            android:elevation="0dp" />
+
+        <TextView
+            android:text="DRIVER"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text"
+            android:layout_marginBottom="40dp"
+            android:textSize="32sp"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+    <TextView
+        android:text="- OR -"
+        android:textColor="#FFD700"
+        android:background="#323232"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:background="#00000000"
+            app:srcCompat="@drawable/mode_selection_passenger"
+            android:scaleType="fitCenter"
+            android:paddingStart="70dp"
+            android:paddingEnd="70dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/passenger"
+            android:elevation="0dp" />
+
+        <TextView
+
+            android:text="PASSENGER"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:layout_alignBottom="@+id/passenger"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="25dp"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+</LinearLayout>
