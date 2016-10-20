@@ -8,28 +8,22 @@
     tools:context="com.example.sajitha.tmt.SelectRoleActivity"
     tools:showIn="@layout/selectrole_app_bar">
 
-    <ImageView
-        android:layout_marginTop="20dp"
-        android:layout_width="246dp"
-        android:layout_height="163dp"
-        android:id="@+id/splash"
-        android:src="@drawable/splash2"
-        android:maxWidth="42dp"
-        android:maxHeight="42dp"
-        android:scaleType="fitCenter"
-
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        />
-
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/splash"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/passenger"
+        android:clickable="true"
+        android:src="@drawable/appicon"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/driver"
+        android:layout_below="@+id/passenger"
+        android:layout_toRightOf="@+id/passenger"
+        android:layout_toEndOf="@+id/passenger"
+        android:clickable="true"
+        android:src="@drawable/ic_menu_share"/>
 
 
 </RelativeLayout>

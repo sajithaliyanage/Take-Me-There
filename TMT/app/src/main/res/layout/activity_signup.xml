@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Signup"
-    android:background="#ffffff"
+    android:background="@drawable/default_background"
     android:weightSum="1">
 
     <!-- Login progress -->
@@ -77,6 +77,8 @@
         android:hint="@string/prompt_name"
         android:inputType="textEmailAddress"
         android:maxLines="1"
+        android:backgroundTint="#ffffff"
+        android:textColorHint="#ffffff"
         android:singleLine="true" />
 
     <EditText
@@ -85,6 +87,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/prompt_email_signup"
         android:inputType="textEmailAddress"
+        android:backgroundTint="#ffffff"
+        android:textColorHint="#ffffff"
         android:maxLines="1"
         android:singleLine="true" />
 
@@ -93,6 +97,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_password"
+        android:backgroundTint="#ffffff"
+        android:textColorHint="#ffffff"
         android:imeActionId="@+id/login"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionUnspecified"
@@ -102,6 +108,8 @@
 
     <EditText
         android:id="@+id/repassword"
+        android:backgroundTint="#ffffff"
+        android:textColorHint="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_repassword"
@@ -117,6 +125,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/gender"
         android:entries="@array/genderTypes"
+        android:backgroundTint="#ffffff"
+        android:textColorHint="#ffffff"
         />
 
     <FrameLayout
@@ -132,24 +142,13 @@
         android:layout_marginTop="16dp"
         android:text="@string/action_sign_up"
         android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:background="#000"
+        android:textColor="#000"
+        android:background="#f3d005"
         android:clickable="true"
         android:onClick="signUpUsers"/>
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Test"
-        android:id="@+id/test"
-        android:textSize="16sp"
-        android:gravity="start"
-        android:onClick="moveLogin"/>
-
-    <TextView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -157,6 +156,7 @@
         android:id="@+id/forgetPassword"
         android:textSize="16sp"
         android:gravity="start"
+        android:textColor="#ffffff"
         android:onClick="moveLogin"/>
 
 </LinearLayout>

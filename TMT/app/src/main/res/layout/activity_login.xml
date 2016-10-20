@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity"
-    android:background="#ffffff"
+    android:background="@drawable/default_background"
     android:weightSum="1">
 
     <!-- Login progress -->
@@ -46,7 +46,6 @@
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
-    </ScrollView>
 
     <ImageView
         android:layout_width="146dp"
@@ -76,6 +75,8 @@
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:maxLines="1"
+        android:backgroundTint="#ffffff"
+        android:textColorHint="#ffffff"
         android:singleLine="true" />
 
     <EditText
@@ -88,6 +89,8 @@
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
+        android:textColorHint="#ffffff"
+        android:backgroundTint="#ffffff"
         android:singleLine="true" />
 
     <FrameLayout
@@ -103,8 +106,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/action_sign_in"
         android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:background="#000"
+        android:textColor="#000"
+        android:background="#f3d005"
         android:clickable="true"
         android:onClick="signInUsers"/>
 
@@ -148,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff"
             android:text="Forgot Password?"
             android:id="@+id/forgetPassword"
             android:textSize="16sp"
@@ -162,6 +166,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="New here? Sign Up"
+            android:textColor="#ffffff"
             android:textSize="16sp"
             android:id="@+id/signUp"
             android:gravity="end"
@@ -170,4 +175,5 @@
             android:onClick="addListenerOnText"/>
 
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>
