@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,11 +21,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.location.Address;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -32,12 +36,21 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
     private GoogleMap mMap;
     private Marker mPositionMarker;
     Context context;
     SharedPreferences sharedPreferences;
     LoginSession sessionLogin;
+    Geocoder geocoder;
+    List<Address> yourAddresses;
+    String address,city,yourCountry;
+    String finalDest;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +75,70 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         mapFragment.getMapAsync(this);
 
         setUpMapIfNeeded();
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+                // Creating a marker
+                MarkerOptions markerOptions = new MarkerOptions();
+
+                // Setting the position for the marker
+                markerOptions.position(latLng);
+
+                // Setting the title for the marker.
+                // This will be displayed on taping the marker
+                markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+
+                finalDest = getCompleteAddressString(latLng.latitude,latLng.longitude);
+
+                Log.i("Address",finalDest);
+                TextView txt = (TextView)findViewById(R.id.desination);
+                txt.setText("Hello");
+
+                // Clears the previously touched position
+                mMap.clear();
+                // Animating to the touched position
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                // Placing a marker on the touched position
+                mMap.addMarker(markerOptions);
+            }
+        });
     }
+
+    private String getCompleteAddressString(double latitude, double longitude) {
+        String addressString = "No address found";
+        Geocoder gc = new Geocoder(this, Locale.getDefault());
+
+        try {
+            List<Address> addresses = gc.getFromLocation(latitude, longitude, 1);
+
+            if (addresses.size() > 0) {
+                Address address = addresses.get(0);
+                addressString = address.getAddressLine(0);
+                addressString = addressString.substring(addressString.indexOf(" ") + 1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return addressString;
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //Log.i("Google Maps","Marker ");
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(6.9029514,79.8608261);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in UCSC"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14.0f));
+//        //Log.i("Google Maps","Marker ");
+//        mMap = googleMap;
+//
+//        // Add a marker in Sydney and move the camera
+//        LatLng sydney = new LatLng(6.9029514,79.8608261);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in UCSC"));
+//        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14.0f));
 
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,9 +175,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public void onMyLocationChange(Location arg0) {
                         Log.i("Google Maps","location changed");
                         // TODO Auto-generated method stub
-                        //LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
-
-
+                        LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
+                        CameraUpdate center = CameraUpdateFactory.newLatLng(current);
+                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
                         if(mPositionMarker!=null){
                             mPositionMarker.remove();
                         }
@@ -123,22 +188,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         //String x = Integer.toString(userid);
                         if(!userMode){
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
-                                    .flat(true)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man))
-                                    .anchor(0.5f, 0.5f)
-                                    .position( new LatLng(arg0.getLatitude(), arg0.getLongitude())));
+                                    .position(current)
+                                    .title("My Location")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
                         }else{
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
-                                    .flat(true)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon))
-                                    .anchor(0.5f, 0.5f)
-                                    .position( new LatLng(arg0.getLatitude(), arg0.getLongitude())));
+                                    .position(current)
+                                    .title("My Location")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon)));
                         }
 
-                        CameraUpdate center = CameraUpdateFactory.newLatLng( new LatLng(arg0.getLatitude(), arg0.getLongitude()));
-                        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
 
-                        animateMarker(mPositionMarker, arg0);
+                        //animateMarker(mPositionMarker, arg0);
                         mMap.moveCamera(center);
                         mMap.animateCamera(zoom);
 
@@ -207,6 +268,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -217,4 +279,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
