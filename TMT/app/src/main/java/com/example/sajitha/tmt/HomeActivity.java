@@ -134,7 +134,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 int userid = sessionLogin.sharedpreferences.getInt("userid",0);
 
-                String[] arrayOfValue = new String[2];
+                String[] arrayOfValue = new String[3];
                 arrayOfValue[0] = Double.toString(latitude);
                 arrayOfValue[1] = Double.toString(longitude);
                 arrayOfValue[2] = Integer.toString(userid);

@@ -23,6 +23,14 @@
         <item>Female</item>
     </string-array>
 
+    <string-array name="vehicleTypes">
+        <item>Mercedes Benz SUV</item>
+        <item>Toyota Corolla Axio</item>
+        <item>Nissan Bluebird</item>
+        <item>Honda Vezel</item>
+        <item>Mitsubishi Lanser</item>
+    </string-array>
+
     <string name="title_activity_home">Setup Your Destination</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -125,4 +133,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="title_activity_dreive_mode">Map</string>
 </resources>

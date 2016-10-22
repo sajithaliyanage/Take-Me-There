@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,11 +13,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class DriverDestination extends AsyncTask<String,Void,String> {
+public class confirmRide extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
 
-    public DriverDestination(Context context,Activity activity){
+    public confirmRide(Context context, Activity activity){
         this.context = context;
         this.activity = activity;
     }
