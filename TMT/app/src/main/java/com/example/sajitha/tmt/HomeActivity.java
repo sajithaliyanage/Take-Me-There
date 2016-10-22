@@ -1,7 +1,9 @@
 package com.example.sajitha.tmt;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
@@ -19,8 +21,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.location.Address;
@@ -40,7 +45,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback,View.OnClickListener {
     private GoogleMap mMap;
     private Marker mPositionMarker;
     Context context;
@@ -50,6 +55,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     List<Address> yourAddresses;
     String address,city,yourCountry;
     String finalDest;
+    Activity activity;
+    double latitude, longitude;
 
 
     @Override
@@ -57,6 +64,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         context = this;
+
+        //left navigate drawer set
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,6 +83,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        //confirm destination button
+        Button one = (Button) findViewById(R.id.confirmDesti);
+        one.setOnClickListener(this); // calling onClick() method
+
+        //map marker set
         setUpMapIfNeeded();
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -90,12 +104,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 // Setting the title for the marker.
                 // This will be displayed on taping the marker
                 markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+                latitude = latLng.latitude;
+                longitude = latLng.longitude;
 
-                finalDest = getCompleteAddressString(latLng.latitude,latLng.longitude);
+                finalDest = getCompleteAddressString(latLng.latitude,latLng.longitude,context);
 
                 Log.i("Address",finalDest);
                 TextView txt = (TextView)findViewById(R.id.desination);
-                txt.setText("Hello");
+                txt.setText("Destination Detected. Confirm it");
 
                 // Clears the previously touched position
                 mMap.clear();
@@ -108,20 +124,41 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    private String getCompleteAddressString(double latitude, double longitude) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.confirmDesti:
+//                Intent intent1 = new Intent(context,DriverDestination.class);
+//                context.startActivity(intent1);
+                //        sharedpreferences = sessionLogin.sharedpreferences;
+
+                int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+
+                String[] arrayOfValue = new String[2];
+                arrayOfValue[0] = Double.toString(latitude);
+                arrayOfValue[1] = Double.toString(longitude);
+                arrayOfValue[2] = Integer.toString(userid);
+                new DriverDestination(context,activity).execute(arrayOfValue);
+                break;
+        }
+    }
+
+    private String getCompleteAddressString(double latitude, double longitude, Context context) {
         String addressString = "No address found";
-        Geocoder gc = new Geocoder(this, Locale.getDefault());
+        Geocoder gc = new Geocoder(context);
 
         try {
             List<Address> addresses = gc.getFromLocation(latitude, longitude, 1);
-
+            Toast.makeText(HomeActivity.this,addresses.size(), Toast.LENGTH_SHORT).show();
             if (addresses.size() > 0) {
+                Toast.makeText(HomeActivity.this,addresses.size(), Toast.LENGTH_SHORT).show();
                 Address address = addresses.get(0);
                 addressString = address.getAddressLine(0);
                 addressString = addressString.substring(addressString.indexOf(" ") + 1);
             }
         } catch (IOException e) {
             e.printStackTrace();
+            //Toast.makeText(HomeActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         return addressString;

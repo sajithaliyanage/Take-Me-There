@@ -14,11 +14,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class SigninPOST extends AsyncTask<String,Void,String> {
+public class DriverDestination extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
 
-    public SigninPOST(Context context,Activity activity){
+    public DriverDestination(Context context,Activity activity){
         this.context = context;
         this.activity = activity;
     }
@@ -28,14 +28,19 @@ public class SigninPOST extends AsyncTask<String,Void,String> {
 
         try{
             //send using post method
-            String email = (String)params[0];
-            String password = (String)params[1];
-            Log.i("FullName",email);
-            Log.i("email",password);
+            String latitude1 = (String)params[0];
+            String longitude1 = (String)params[1];
+            String userid = (String)params[2];
+            //double latitude = Double.parseDouble(latitude1);
+            //double longitude = Double.parseDouble(longitude1);
 
-            String link="http://hydrosaver.azurewebsites.net/takemethere/php/login.php";
-            String data  = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
-            data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+            Log.i("Lati -",latitude1);
+            Log.i("Long -",longitude1);
+
+            String link="http://hydrosaver.azurewebsites.net/takemethere/php/confirmDestination.php";
+            String data  = URLEncoder.encode("latitude", "UTF-8") + "=" + URLEncoder.encode(latitude1, "UTF-8");
+            data += "&" + URLEncoder.encode("longitude", "UTF-8") + "=" + URLEncoder.encode(longitude1, "UTF-8");
+            data += "&" + URLEncoder.encode("userid", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -68,27 +73,14 @@ public class SigninPOST extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result){
-        String[] values = result.split(",");
-        Log.i("Loggin - success", values[0]);
-        //Log.i("Loggin2 - success", values[1]);
+        Log.i("Desti - success",result);
 
-        if(values[0].equals("done")){
-            //int userID = Integer.parseInt(values[1]);
-            Log.i("Loggin","All set");
-            int userid = Integer.parseInt(values[1]);
+        if(result.equals("done")){
 
-            LoginSession sessionLogin = new LoginSession(context);
-            sessionLogin.setLogged(true,userid);
-
-            Intent intent = new Intent(context,SelectRoleActivity.class);;
+            Intent intent = new Intent(context,DriverSetActivity.class);;
             context.startActivity(intent);
         }else{
-            Toast.makeText(activity,"Invalid username or password" , Toast.LENGTH_LONG).show();
 
-            activity.startActivity(new Intent(activity, LoginActivity.class));
-
-            //Toast.makeText(getApplicationContext(),"My status is"+result,Toast.LENGTH_SHORT).show();
-            //Toast.makeText(LoginActivity.this,"Invalid username or password", Toast.LENGTH_SHORT).show();
         }
 
     }
