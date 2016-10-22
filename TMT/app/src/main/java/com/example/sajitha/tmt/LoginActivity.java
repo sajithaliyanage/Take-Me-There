@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
     //when pressed SIGN IN button
     public void signInUsers(View v){
         EditText useremail = (EditText)findViewById(R.id.email);
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private Boolean exit = false;
+
     @Override
     public void onBackPressed() {
         if (time + 1000>System.currentTimeMillis()) {

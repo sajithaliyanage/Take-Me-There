@@ -65,9 +65,12 @@
         <activity
             android:name=".SelectRoleActivity"
             android:label="Select Your Mode"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

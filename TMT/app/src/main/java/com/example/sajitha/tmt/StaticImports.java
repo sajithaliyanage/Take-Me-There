@@ -4,12 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.util.Log;
 
 public class StaticImports {
     public static void navigate_menu(int id, Context context){
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        Log.i("Home","INSIDE");
+        if (id == R.id.home) {
+            Log.i("Home","Done");
+            Intent intent = new Intent(context,HomeActivity.class);;
+            context.startActivity(intent);
+
+        } else if (id == R.id.profile) {
+            Intent intent = new Intent(context,ProfileActivity.class);;
+            context.startActivity(intent);
 
         } else if (id == R.id.nav_slideshow2) {
 
