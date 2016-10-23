@@ -1,9 +1,11 @@
 package com.example.sajitha.tmt;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -13,11 +15,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class confirmRide extends AsyncTask<String,Void,String> {
+public class ConfirmRide extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
 
-    public confirmRide(Context context, Activity activity){
+    public ConfirmRide(Context context, Activity activity){
         this.context = context;
         this.activity = activity;
     }
@@ -27,19 +29,16 @@ public class confirmRide extends AsyncTask<String,Void,String> {
 
         try{
             //send using post method
-            String latitude1 = (String)params[0];
-            String longitude1 = (String)params[1];
-            String userid = (String)params[2];
+            String userid = (String)params[0];
+            String total = (String)params[1];
+            String available = (String)params[2];
             //double latitude = Double.parseDouble(latitude1);
             //double longitude = Double.parseDouble(longitude1);
 
-            Log.i("Lati -",latitude1);
-            Log.i("Long -",longitude1);
-
-            String link="http://hydrosaver.azurewebsites.net/takemethere/php/confirmDestination.php";
-            String data  = URLEncoder.encode("latitude", "UTF-8") + "=" + URLEncoder.encode(latitude1, "UTF-8");
-            data += "&" + URLEncoder.encode("longitude", "UTF-8") + "=" + URLEncoder.encode(longitude1, "UTF-8");
-            data += "&" + URLEncoder.encode("userd", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
+            String link="http://hydrosaver.azurewebsites.net/takemethere/php/confirmRide.php";
+            String data  = URLEncoder.encode("userid", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
+            data += "&" + URLEncoder.encode("total", "UTF-8") + "=" + URLEncoder.encode(total, "UTF-8");
+            data += "&" + URLEncoder.encode("available", "UTF-8") + "=" + URLEncoder.encode(available, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -76,7 +75,27 @@ public class confirmRide extends AsyncTask<String,Void,String> {
 
         if(result.equals("done")){
 
-            Intent intent = new Intent(context,DriverSetActivity.class);;
+            final ProgressDialog progress;
+            progress = new ProgressDialog(context);
+            progress.setTitle("Please Wait!!");
+            progress.setMessage("Loading Your Drive Mode!!");
+            progress.setCancelable(true);
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progress.show();
+
+            new CountDownTimer(3000, 1000) {
+                public void onFinish() {
+                    progress.dismiss();
+                    Intent intent = new Intent(context,DriveModeActivity.class);;
+                    context.startActivity(intent);
+                }
+
+                public void onTick(long millisUntilFinished) {
+                    progress.show();
+                }
+            }.start();
+
+            Intent intent = new Intent(context,DriveModeActivity.class);;
             context.startActivity(intent);
         }else{
 
