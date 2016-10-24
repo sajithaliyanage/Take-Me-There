@@ -40,7 +40,7 @@ public class SignupPOST extends AsyncTask<String,Void,String> {
 //            Log.i("FullName",username);
 //            Log.i("email",email);
 
-            String link="http://takeyourleave.azurewebsites.net/android/index.php";
+            String link="http://hydrosaver.azurewebsites.net/takemethere/php/signup.php";
             String data  = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
             data += "&" + URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");

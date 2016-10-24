@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_driver_vehicle_selection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_background"
+    android:orientation="vertical"
+    android:layout_marginTop="55dp"
+    tools:context="com.example.sajitha.tmt.DriverSetActivity">
+    <RelativeLayout
+
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/lblSelectYourVehicle"
+            android:text="Select Your Vehicle"
+            android:textColor="#FFD700"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_below="@id/lblSelectYourVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:background="#fff"
+                android:layout_marginTop="1dp"
+                android:entries="@array/vehicleTypes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="31.25dp">
+
+            </Spinner>
+
+            <Button
+                android:text="Manage"
+                android:background="#ffd700"
+                android:layout_width="wrap_content"
+                android:layout_height="31.4dp"
+                android:layout_marginTop="1dp"
+                android:id="@+id/button" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        app:srcCompat="@drawable/benz1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <LinearLayout
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Owner"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:text="Availability"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Total Seats"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Available Seats"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Vehicle Maker"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Vehicle Model"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Vehicle Number"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Vehicle Type"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+
+
+            <TextView
+                android:text="Air Conditioner"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#FFD700"
+                android:id="@+id/name"
+                android:text="Sulochan Kodituwakku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|bold"
+                android:textSize="18sp" />
+
+
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="Available"
+                android:id="@+id/availability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="5"
+                android:id="@+id/total_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="4"
+                android:id="@+id/available_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="Mercedes Benz"
+                android:id="@+id/vehicle_maker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="E300"
+                android:id="@+id/vehicle_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="SP AEU 5565"
+                android:id="@+id/vehicle_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:id="@+id/vehicle_type"
+                android:text="SUV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+
+
+            <TextView
+                android:textColor="#FFD700"
+                android:textStyle="normal|bold"
+                android:text="Available"
+                android:id="@+id/ac_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirmRide"
+        android:text="CONFIRM"
+        android:textSize="18sp"
+        android:background="#ffd700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="confirmRide"/>
+
+
+</LinearLayout>

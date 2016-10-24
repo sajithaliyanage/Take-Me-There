@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         tools:layout="@layout/abc_action_menu_layout" />
 
+
     <TextView
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -41,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm destination"
-        android:id="@+id/button"
+        android:id="@+id/confirmDesti"
         android:background="#ffd700"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
@@ -51,6 +52,7 @@
         android:layout_alignParentStart="true"
         android:textStyle="bold"
         android:clickable="true"
+        android:onClick="confirmDestination"
         />
 
 
