@@ -7,19 +7,18 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Home" />
         <item
+            android:id="@+id/mode"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Change Mode" />
+        <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_menu_share"
-            android:title="Profile" />
+            android:title="My Profile" />
 
         <item
             android:id="@+id/analysis"
             android:icon="@drawable/ic_menu_manage"
             android:title="Data Analysis" />
-
-        <item
-            android:id="@+id/about"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="About Us" />
 
         <item
             android:id="@+id/chatbox"
@@ -33,6 +32,10 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Insurance" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="About Us" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_setting_dark"

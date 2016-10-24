@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     String finalDest;
     Activity activity;
     double latitude, longitude;
-    boolean isCentered=false;
+    boolean isCentered,userMode=false;
 
 
     @Override
@@ -65,6 +65,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         context = this;
+        sessionLogin = new LoginSession(context);
+        sharedPreferences = sessionLogin.sharedpreferences;
+
+        userMode = sessionLogin.sharedpreferences.getBoolean("is_vehicle",false);
 
         //left navigate drawer set
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -129,18 +133,29 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.confirmDesti:
+                    if(!userMode){
+                        int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+                        Log.i("UserMode-","Passenger");
+                        String[] arrayOfValue = new String[3];
+                        arrayOfValue[0] = Double.toString(latitude);
+                        arrayOfValue[1] = Double.toString(longitude);
+                        arrayOfValue[2] = Integer.toString(userid);
+                        new PassengerDestination(context,activity).execute(arrayOfValue);
+                        break;
+                    }else{
+                        int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+                        Log.i("UserMode-","Driver");
+                        String[] arrayOfValue = new String[3];
+                        arrayOfValue[0] = Double.toString(latitude);
+                        arrayOfValue[1] = Double.toString(longitude);
+                        arrayOfValue[2] = Integer.toString(userid);
+                        new DriverDestination(context,activity).execute(arrayOfValue);
+                        break;
+                    }
 //                Intent intent1 = new Intent(context,DriverDestination.class);
 //                context.startActivity(intent1);
                 //        sharedpreferences = sessionLogin.sharedpreferences;
 
-                int userid = sessionLogin.sharedpreferences.getInt("userid",0);
-
-                String[] arrayOfValue = new String[3];
-                arrayOfValue[0] = Double.toString(latitude);
-                arrayOfValue[1] = Double.toString(longitude);
-                arrayOfValue[2] = Integer.toString(userid);
-                new DriverDestination(context,activity).execute(arrayOfValue);
-                break;
         }
     }
 
@@ -219,10 +234,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         if(mPositionMarker!=null){
                             mPositionMarker.remove();
                         }
-                        sessionLogin = new LoginSession(context);
-                        sharedPreferences = sessionLogin.sharedpreferences;
 
-                        boolean userMode = sessionLogin.sharedpreferences.getBoolean("is_vehicle",false);
                         //String x = Integer.toString(userid);
                         if(!userMode){
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
