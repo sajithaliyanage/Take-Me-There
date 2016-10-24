@@ -106,26 +106,6 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
         mMap.animateCamera(zoom);
 
-        markerPoints.add(destination);
-
-        // Creating MarkerOptions
-        MarkerOptions options = new MarkerOptions();
-
-        // Setting the position of the marker
-        options.position(destination);
-        options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        LatLng dest = markerPoints.get(1);
-
-        // Getting URL to the Google Directions API
-        String url = getDirectionsUrl(current, dest);
-
-        DownloadTask downloadTask = new DownloadTask();
-
-        // Start downloading json data from Google Directions API
-        downloadTask.execute(url);
-        mMap.addMarker(options);
-
-
 
         // Setting onclick event listener for the map
 //        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -201,7 +181,24 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         destination = new LatLng(dest_lat,dest_lng);
         Log.i("Lang -------- ", destination.latitude+"");
 
+        markerPoints.add(destination);
 
+        // Creating MarkerOptions
+        MarkerOptions options = new MarkerOptions();
+
+        // Setting the position of the marker
+        options.position(destination);
+        options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        //LatLng dest = markerPoints.get(1);
+
+        // Getting URL to the Google Directions API
+//        String url = getDirectionsUrl(current, destination);
+//
+//        DownloadTask downloadTask = new DownloadTask();
+//
+//        // Start downloading json data from Google Directions API
+//        downloadTask.execute(url);
+        mMap.addMarker(options);
 
     }
 
@@ -447,7 +444,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
 
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
-                lineOptions.width(4);
+                lineOptions.width(8);
                 lineOptions.color(Color.RED);
             }
 
