@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,11 +13,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class DriverDestination extends AsyncTask<String,Void,String> {
+public class PassengerDestination extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
     double dest_lat,dest_lng;
-    public DriverDestination(Context context,Activity activity){
+    public PassengerDestination(Context context, Activity activity){
         this.context = context;
         this.activity = activity;
     }
@@ -39,7 +38,7 @@ public class DriverDestination extends AsyncTask<String,Void,String> {
             Log.i("Lati -",latitude1);
             Log.i("Long -",longitude1);
 
-            String link="http://hydrosaver.azurewebsites.net/takemethere/php/driverConfirmDestination.php";
+            String link="http://hydrosaver.azurewebsites.net/takemethere/php/passengerConfirmDestination.php";
             String data  = URLEncoder.encode("latitude", "UTF-8") + "=" + URLEncoder.encode(latitude1, "UTF-8");
             data += "&" + URLEncoder.encode("longitude", "UTF-8") + "=" + URLEncoder.encode(longitude1, "UTF-8");
             data += "&" + URLEncoder.encode("userd", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
@@ -79,7 +78,7 @@ public class DriverDestination extends AsyncTask<String,Void,String> {
 
         if(result.equals("done")){
 
-            Intent intent = new Intent(context,DriverSetActivity.class);
+            Intent intent = new Intent(context,PassengerSetActivity.class);
             intent.putExtra("dest_lat",dest_lat);
             intent.putExtra("dest_lng",dest_lng);
             context.startActivity(intent);

@@ -26,6 +26,9 @@ public class StaticImports {
 
         } else if (id == R.id.chatbox) {
 
+        } else if (id == R.id.mode) {
+            Intent intent = new Intent(context,SelectRoleActivity.class);;
+            context.startActivity(intent);
         }else if (id == R.id.logout){
 
             LoginSession sessionLogin = new LoginSession(context);

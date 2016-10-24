@@ -20,7 +20,7 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
     Context context;
     Activity activity;
     LoginSession sessionLogin;
-
+    double dest_lat,dest_lng;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,18 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        Bundle extras = getIntent().getExtras();
+
+        if(extras == null) {
+            dest_lat= 0;
+            dest_lng= 0;
+        } else {
+            dest_lat= extras.getDouble("dest_lat");
+            dest_lng=  extras.getDouble("dest_lng");
+
+        }
 
         Button one = (Button) findViewById(R.id.confirmRide);
         one.setOnClickListener(this);
@@ -103,7 +115,7 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
                 arrayOfValue[0] = Integer.toString(userid);
                 arrayOfValue[1] = total;
                 arrayOfValue[2] = available;
-                new ConfirmRide(context,activity).execute(arrayOfValue);
+                new ConfirmRide(context,activity,dest_lat,dest_lng).execute(arrayOfValue);
                 break;
         }
     }
