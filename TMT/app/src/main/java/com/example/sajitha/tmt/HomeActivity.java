@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     String finalDest;
     Activity activity;
     double latitude, longitude;
+    boolean isCentered=false;
 
 
     @Override
@@ -107,9 +108,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 latitude = latLng.latitude;
                 longitude = latLng.longitude;
 
-                finalDest = getCompleteAddressString(latLng.latitude,latLng.longitude,context);
+                //finalDest = getCompleteAddressString(latLng.latitude,latLng.longitude,context);
 
-                Log.i("Address",finalDest);
+                //Log.i("Address",finalDest);
                 TextView txt = (TextView)findViewById(R.id.desination);
                 txt.setText("Destination Detected. Confirm it");
 
@@ -149,7 +150,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         try {
             List<Address> addresses = gc.getFromLocation(latitude, longitude, 1);
-            Toast.makeText(HomeActivity.this,addresses.size(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(HomeActivity.this,addresses.size(), Toast.LENGTH_SHORT).show();
             if (addresses.size() > 0) {
                 Toast.makeText(HomeActivity.this,addresses.size(), Toast.LENGTH_SHORT).show();
                 Address address = addresses.get(0);
@@ -235,10 +236,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.appicon)));
                         }
 
+                        //CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
 
-                        //animateMarker(mPositionMarker, arg0);
-                        mMap.moveCamera(center);
-                        mMap.animateCamera(zoom);
+
+
+                        if(!isCentered){
+                            mMap.moveCamera(center);
+                            mMap.animateCamera(zoom);
+                            isCentered = true;
+                        }
 
                     }
                 });

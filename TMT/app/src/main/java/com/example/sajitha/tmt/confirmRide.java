@@ -18,10 +18,13 @@ import java.net.URLEncoder;
 public class ConfirmRide extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
+    double dest_lat,dest_lng;
 
-    public ConfirmRide(Context context, Activity activity){
+    public ConfirmRide(Context context, Activity activity,double dest_lat,double dest_lng){
         this.context = context;
         this.activity = activity;
+        this.dest_lat=dest_lat;
+        this.dest_lng=dest_lng;
     }
 
     @Override
@@ -86,7 +89,10 @@ public class ConfirmRide extends AsyncTask<String,Void,String> {
             new CountDownTimer(3000, 1000) {
                 public void onFinish() {
                     progress.dismiss();
-                    Intent intent = new Intent(context,DriveModeActivity.class);;
+                    Intent intent = new Intent(context,DriveModeActivity.class);
+                    //intent.putExtra()
+                    intent.putExtra("dest_lat",dest_lat);
+                    intent.putExtra("dest_lng",dest_lng);
                     context.startActivity(intent);
                 }
 
@@ -95,8 +101,8 @@ public class ConfirmRide extends AsyncTask<String,Void,String> {
                 }
             }.start();
 
-            Intent intent = new Intent(context,DriveModeActivity.class);;
-            context.startActivity(intent);
+            //Intent intent = new Intent(context,DriveModeActivity.class);;
+            //context.startActivity(intent);
         }else{
 
         }

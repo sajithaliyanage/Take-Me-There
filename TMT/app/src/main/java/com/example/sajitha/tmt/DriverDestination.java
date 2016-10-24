@@ -17,7 +17,7 @@ import java.net.URLEncoder;
 public class DriverDestination extends AsyncTask<String,Void,String> {
     Context context;
     private Activity activity;
-
+    double dest_lat,dest_lng;
     public DriverDestination(Context context,Activity activity){
         this.context = context;
         this.activity = activity;
@@ -27,6 +27,8 @@ public class DriverDestination extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... params) {
 
         try{
+            dest_lat = Float.parseFloat(params[0]);
+            dest_lng = Float.parseFloat(params[1]);
             //send using post method
             String latitude1 = (String)params[0];
             String longitude1 = (String)params[1];
@@ -77,7 +79,9 @@ public class DriverDestination extends AsyncTask<String,Void,String> {
 
         if(result.equals("done")){
 
-            Intent intent = new Intent(context,DriverSetActivity.class);;
+            Intent intent = new Intent(context,DriverSetActivity.class);
+            intent.putExtra("dest_lat",dest_lat);
+            intent.putExtra("dest_lng",dest_lng);
             context.startActivity(intent);
         }else{
 
