@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            app:srcCompat="@drawable/img_option_commend"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            app:srcCompat="@drawable/img_option_report"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
     </LinearLayout>
