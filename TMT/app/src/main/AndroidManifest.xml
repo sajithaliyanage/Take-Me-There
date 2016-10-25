@@ -1,4 +1,4 @@
-<<<<<<< Original<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="com.example.sajitha.tmt">
 
 <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -47,51 +47,24 @@ package="com.example.sajitha.tmt">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key" />
 
     <activity android:name=".HomeActivity" android:label="@string/title_activity_home" android:theme="@style/AppTheme.NoActionBar" />
+
     <activity android:name=".SelectRoleActivity" android:label="Select Your Mode" android:theme="@style/AppTheme.NoActionBar" />
+
     <activity android:name=".ProfileActivity" android:label="@string/title_activity_profile"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity android:name=".DriverSetActivity" android:label="@string/title_activity_profile"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity android:name=".DriveModeActivity" android:label="@string/title_activity_dreive_mode"
         android:theme="@style/AppTheme.NoActionBar" />
+
     <activity android:name=".PassengerSetActivity" />
-    <
-    <
-    <
-    <
-    <
-    <
-    < HEAD
-    <activity android:name=".AddRemoveVehicle"></activity>
-    =======
-    <activity android:name=".SelectedVechivleActivity"></activity>
-    >>>>>>> eacaa230631add3886bee7bfd4f12c2920ae735c
+
+    <activity android:name=".AddRemoveVehicle"/>
+
+    <activity android:name=".SelectedVechivleActivity"/>
 </application>
 
-</manifest>=======<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-     -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+</manifest>
 
-<application>
-
-    <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
-         -->
-    <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="@string/google_maps_key" />
-
-    <activity android:name="com.example.sajitha.tmt.InsuranceActivity" android:label="@string/title_activity_insurance">
-
-    </activity>
-</application>
-
-</manifest>>>>>>>> Added
