@@ -23,6 +23,7 @@
         <item>Female</item>
     </string-array>
 
+
     <string-array name="vehicleTypes">
         <item>Mercedes Benz SUV</item>
         <item>Toyota Corolla Axio</item>

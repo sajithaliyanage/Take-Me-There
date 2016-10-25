@@ -79,7 +79,11 @@
             android:label="@string/title_activity_dreive_mode"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PassengerSetActivity" />
+<<<<<<< HEAD
         <activity android:name=".AddRemoveVehicle"></activity>
+=======
+        <activity android:name=".SelectedVechivleActivity"></activity>
+>>>>>>> eacaa230631add3886bee7bfd4f12c2920ae735c
     </application>
 
 </manifest>
