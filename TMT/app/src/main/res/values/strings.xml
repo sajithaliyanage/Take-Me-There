@@ -37,6 +37,13 @@
         <item>Any</item>
     </string-array>
 
+    <string-array name="myvehicles">
+        <item>BMW M5</item>
+        <item>Toyota Prius</item>
+        <item>Mercedez Benz S355</item>
+        <item>Nissan Skyline</item>
+    </string-array>
+
     <string name="title_activity_home">Setup Your Destination</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

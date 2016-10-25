@@ -78,7 +78,8 @@
             android:name=".DriveModeActivity"
             android:label="@string/title_activity_dreive_mode"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PassengerSetActivity"></activity>
+        <activity android:name=".PassengerSetActivity" />
+        <activity android:name=".AddRemoveVehicle"></activity>
     </application>
 
 </manifest>
