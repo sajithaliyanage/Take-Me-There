@@ -32,6 +32,12 @@
         <item>Mitsubishi Lanser</item>
     </string-array>
 
+    <string-array name="genderspec">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Any</item>
+    </string-array>
+
     <string name="title_activity_home">Setup Your Destination</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
