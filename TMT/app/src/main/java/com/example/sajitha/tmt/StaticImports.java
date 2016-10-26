@@ -18,22 +18,25 @@ public class StaticImports {
             Intent intent = new Intent(context,ProfileActivity.class);;
             context.startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow2) {
+        } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.about) {
+        } else if (id == R.id.emergency) {
+            Intent intent = new Intent(context,PoliceActivity.class);
+            context.startActivity(intent);
 
-        } else if (id == R.id.chatbox) {
+        } else if (id == R.id.insurance) {
+            Intent intent = new Intent(context,InsuranceActivity.class);
+            context.startActivity(intent);
 
         } else if (id == R.id.mode) {
-            Intent intent = new Intent(context,SelectRoleActivity.class);;
+            Intent intent = new Intent(context,SelectRoleActivity.class);
             context.startActivity(intent);
-        }else if (id == R.id.logout){
 
+        }else if (id == R.id.logout){
             LoginSession sessionLogin = new LoginSession(context);
             sessionLogin.logOut();
-
         }
     }
 }

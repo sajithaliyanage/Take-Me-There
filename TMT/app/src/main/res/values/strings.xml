@@ -46,6 +46,8 @@
     </string-array>
 
     <string name="title_activity_home">Setup Your Destination</string>
+    <string name="insurance">Insurance Cooparations</string>
+    <string name="police">Police Stations</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

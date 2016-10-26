@@ -5,9 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,7 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class InsuranceActivity extends AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener {
+public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener {
     private GoogleMap mMap;
     private Marker mPositionMarker;
     Context context;
@@ -40,7 +39,7 @@ public class InsuranceActivity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.insurance_activity);
+        setContentView(R.layout.police_activity);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -72,46 +71,70 @@ public class InsuranceActivity extends AppCompatActivity implements OnMapReadyCa
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng palce1 = new LatLng(6.9191293,79.8590605);
+        LatLng palce1 = new LatLng(6.8790253,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce1)
-                .title("Janashakthi Insurance PLC")
+                .title("Wellawatte Police Station")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
 
-        LatLng palce2 = new LatLng(6.9191293,79.8590605);
+        LatLng palce2 = new LatLng(6.8790253,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce2)
-                .title("Janashakthi Full Option")
+                .title("Bambalapitiya Police Station")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
 
-        LatLng palce3 = new LatLng(6.9191293,79.8590605);
+        LatLng palce3 = new LatLng(6.8790253,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce3)
-                .title("Janashakthi Fulloption Auto Center")
+                .title("Narahenpita Police Station")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
 
-        LatLng palce4 = new LatLng(6.8912708,79.855981);
+        LatLng palce4 = new LatLng(6.9534142,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce4)
-                .title("Janashakthi Galle Rd, Colombo")
+                .title("Kotahena Police Station")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
 
         LatLng palce5 = new LatLng(6.9205238,79.8584123);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce5)
-                .title("Janashakthi General Insurance Limited")
+                .title("Peliyagoda Police Station")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
 
-        LatLng palce6 = new LatLng(6.9170769,79.8581332);
+        LatLng palce6 = new LatLng(6.9534142,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce6)
-                .title("Janashakthi Insurance - Colombo 02")
+                .title("Sri Lanka Police Headquarters")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
 
-        LatLng palce7 = new LatLng(6.901712,79.8616473);
+        LatLng palce7 = new LatLng(6.9534142,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce7)
-                .title("Janashakthi Insurance - Colombo 07")
+                .title("City Traffic Police Station")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+
+        LatLng palce8 = new LatLng(6.9274247,79.8316841);
+        mPositionMarker = mMap.addMarker(new MarkerOptions()
+                .position(palce8)
+                .title("Slave Island Police Station")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+
+        LatLng palce9 = new LatLng(6.9292349,79.8794954);
+        mPositionMarker = mMap.addMarker(new MarkerOptions()
+                .position(palce9)
+                .title("Cinnamon Gardens Police Station")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+
+        LatLng palce10 = new LatLng(6.9292349,79.8794954);
+        mPositionMarker = mMap.addMarker(new MarkerOptions()
+                .position(palce10)
+                .title("Maradana Police Station")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+
+        LatLng palce11 = new LatLng(6.9292349,79.8794954);
+        mPositionMarker = mMap.addMarker(new MarkerOptions()
+                .position(palce11)
+                .title("Welikada Police Station")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
     }
 
@@ -125,7 +148,7 @@ public class InsuranceActivity extends AppCompatActivity implements OnMapReadyCa
                     == PackageManager.PERMISSION_GRANTED) {
                 mMap.setMyLocationEnabled(true);
             } else {
-                Toast.makeText(InsuranceActivity.this, "You have to accept to enjoy all app's services!", Toast.LENGTH_LONG).show();
+                Toast.makeText(PoliceActivity.this, "You have to accept to enjoy all app's services!", Toast.LENGTH_LONG).show();
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED) {
                     mMap.setMyLocationEnabled(true);
@@ -167,7 +190,6 @@ public class InsuranceActivity extends AppCompatActivity implements OnMapReadyCa
             }
         }
     }
-
 
     //Navigation bar
     @Override
