@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -14,34 +16,27 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class DriverDestination extends AsyncTask<String,Void,String> {
+public class UpdateCurrentLocation extends AsyncTask<String,Void,String> {
     Context context;
-    private Activity activity;
-    double dest_lat,dest_lng;
-    public DriverDestination(Context context,Activity activity){
+    //private Activity activity;
+
+    public UpdateCurrentLocation(Context context){
         this.context = context;
-        this.activity = activity;
+        //this.activity = activity;
     }
 
     @Override
     protected String doInBackground(String... params) {
 
         try{
-            dest_lat = Float.parseFloat(params[0]);
-            dest_lng = Float.parseFloat(params[1]);
             //send using post method
-            String latitude1 = (String)params[0];
-            String longitude1 = (String)params[1];
-            String userid = (String)params[2];
-            //double latitude = Double.parseDouble(latitude1);
-            //double longitude = Double.parseDouble(longitude1);
+            String lat = (String)params[1];
+            String lng = (String)params[2];
+            String userid = (String)params[0];
 
-            Log.i("Lati -",latitude1);
-            Log.i("Long -",longitude1);
-
-            String link="http://hydrosaver.azurewebsites.net/takemethere/php/driverConfirmDestination.php";
-            String data  = URLEncoder.encode("latitude", "UTF-8") + "=" + URLEncoder.encode(latitude1, "UTF-8");
-            data += "&" + URLEncoder.encode("longitude", "UTF-8") + "=" + URLEncoder.encode(longitude1, "UTF-8");
+            String link="http://hydrosaver.azurewebsites.net/takemethere/php/updateCurrent.php";
+            String data  = URLEncoder.encode("lat", "UTF-8") + "=" + URLEncoder.encode(lat, "UTF-8");
+            data += "&" + URLEncoder.encode("lng", "UTF-8") + "=" + URLEncoder.encode(lng, "UTF-8");
             data += "&" + URLEncoder.encode("userid", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
 
             URL url = new URL(link);
@@ -75,18 +70,8 @@ public class DriverDestination extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result){
-        Log.i("Desti - success",result);
-
-        if(result.equals("done")){
-
-            Intent intent = new Intent(context,DriverSetActivity.class);
-            intent.putExtra("dest_lat",dest_lat);
-            intent.putExtra("dest_lng",dest_lng);
-            context.startActivity(intent);
-        }else{
-
-        }
-
+        Log.i("Result -",result);
     }
+
 
 }

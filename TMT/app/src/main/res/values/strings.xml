@@ -23,6 +23,44 @@
         <item>Female</item>
     </string-array>
 
+    <string-array name="vehiclecategories">
+        <item>TUK</item>
+        <item>MINI</item>
+        <item>CAR</item>
+        <item>VAN</item>
+        <item>LORRY</item>
+        <item>BICYCLE</item>
+        <item>SUV</item>
+        <item>CAB</item>
+    </string-array>
+
+    <string-array name="vehiclecolor">
+        <item>Black</item>
+        <item>White</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Purple</item>
+    </string-array>
+
+    <string-array name="vehiclemakers">
+        <item>BMW</item>
+        <item>Mercedez Benz</item>
+        <item>Toyota</item>
+        <item>Hyundai</item>
+        <item>Nissan</item>
+        <item>Maruti</item>
+        <item>Micro</item>
+        <item>Porche</item>
+        <item>Audi</item>
+        <item>Honda</item>
+        <item>Ford</item>
+        <item>Jaguar</item>
+        <item>Bently</item>
+    </string-array>
+
 
     <string-array name="vehicleTypes">
         <item>Mercedes Benz SUV</item>
@@ -48,6 +86,8 @@
     <string name="title_activity_home">Setup Your Destination</string>
     <string name="insurance">Insurance Cooparations</string>
     <string name="police">Police Stations</string>
+    <string name="addVechicle">Add or Remove Vechicle</string>
+    <string name="preference">Set Your Preference</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

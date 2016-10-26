@@ -76,43 +76,43 @@ public class InsuranceActivity extends AppCompatActivity implements OnMapReadyCa
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce1)
                 .title("Janashakthi Insurance PLC")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
 
         LatLng palce2 = new LatLng(6.9191293,79.8590605);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce2)
                 .title("Janashakthi Full Option")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
 
         LatLng palce3 = new LatLng(6.9191293,79.8590605);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce3)
                 .title("Janashakthi Fulloption Auto Center")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
 
         LatLng palce4 = new LatLng(6.8912708,79.855981);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce4)
                 .title("Janashakthi Galle Rd, Colombo")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
 
         LatLng palce5 = new LatLng(6.9205238,79.8584123);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce5)
                 .title("Janashakthi General Insurance Limited")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
 
         LatLng palce6 = new LatLng(6.9170769,79.8581332);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce6)
                 .title("Janashakthi Insurance - Colombo 02")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
 
         LatLng palce7 = new LatLng(6.901712,79.8616473);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce7)
                 .title("Janashakthi Insurance - Colombo 07")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.insurance)));
     }
 
     private void setUpMapIfNeeded() {

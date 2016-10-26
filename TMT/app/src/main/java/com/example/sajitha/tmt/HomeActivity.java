@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     Activity activity;
     double latitude, longitude;
     boolean isCentered,userMode=false;
-
+    LatLng current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,15 +136,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     if(!userMode){
                         int userid = sessionLogin.sharedpreferences.getInt("userid",0);
                         Log.i("UserMode-","Passenger");
-                        String[] arrayOfValue = new String[3];
+                        String[] arrayOfValue = new String[5];
                         arrayOfValue[0] = Double.toString(latitude);
                         arrayOfValue[1] = Double.toString(longitude);
                         arrayOfValue[2] = Integer.toString(userid);
+                        arrayOfValue[3] = current.latitude+"";
+                        arrayOfValue[4] = current.longitude+"";
                         new PassengerDestination(context,activity).execute(arrayOfValue);
                         break;
                     }else{
                         int userid = sessionLogin.sharedpreferences.getInt("userid",0);
-                        Log.i("UserMode-","Driver");
+                        Log.i("UserMode-","Driver"+"::::::::"+userid);
                         String[] arrayOfValue = new String[3];
                         arrayOfValue[0] = Double.toString(latitude);
                         arrayOfValue[1] = Double.toString(longitude);
@@ -228,7 +230,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public void onMyLocationChange(Location arg0) {
                         Log.i("Google Maps","location changed");
                         // TODO Auto-generated method stub
-                        LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
+                        current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
                         CameraUpdate center = CameraUpdateFactory.newLatLng(current);
                         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
                         if(mPositionMarker!=null){
@@ -240,7 +242,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
                                     .position(current)
                                     .title("My Location")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pasenger)));
                         }else{
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
                                     .position(current)
@@ -249,7 +251,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         }
 
                         //CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-
 
 
                         if(!isCentered){

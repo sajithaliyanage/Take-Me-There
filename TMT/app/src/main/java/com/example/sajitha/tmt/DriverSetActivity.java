@@ -2,6 +2,7 @@ package com.example.sajitha.tmt;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +22,7 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
     Activity activity;
     LoginSession sessionLogin;
     double dest_lat,dest_lng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,9 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
 
         Button one = (Button) findViewById(R.id.confirmRide);
         one.setOnClickListener(this);
+
+        Button one1 = (Button) findViewById(R.id.addVechicle);
+        one1.setOnClickListener(this);
 
         sessionLogin = new LoginSession(this);
     }
@@ -98,7 +103,6 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
         return true;
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -116,6 +120,11 @@ public class DriverSetActivity extends AppCompatActivity implements View.OnClick
                 arrayOfValue[1] = total;
                 arrayOfValue[2] = available;
                 new ConfirmRide(context,activity,dest_lat,dest_lng).execute(arrayOfValue);
+                break;
+            case R.id.addVechicle:
+                Log.i("Add or Remove","Done");
+                Intent intent = new Intent(context,AddRemoveVehicle.class);
+                context.startActivity(intent);
                 break;
         }
     }
