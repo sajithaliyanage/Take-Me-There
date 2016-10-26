@@ -1,11 +1,9 @@
 package com.example.sajitha.tmt;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
-
-import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,13 +12,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class GetPossibleVehicles extends AsyncTask<String,Void,String> {
+public class SendRequest extends AsyncTask<String,Void,String> {
     Context context;
-    private FilterVehiclesActivity activity;
 
-    public GetPossibleVehicles(Context context, FilterVehiclesActivity activity){
+    //private Activity activity;
+
+    public SendRequest(Context context){
         this.context = context;
-        this.activity = activity;
+        //this.activity = activity;
     }
 
     @Override
@@ -28,10 +27,13 @@ public class GetPossibleVehicles extends AsyncTask<String,Void,String> {
 
         try{
             //send using post method
-            String userid = (String)params[0];
+            String driverID= params[0];
+            String userID =params[1] ;
 
-            String link="http://hydrosaver.azurewebsites.net/takemethere/php/getPossibleVehicles.php";
-            String data  = URLEncoder.encode("userid", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
+
+            String link="http://hydrosaver.azurewebsites.net/takemethere/php/sendRequestToDriver.php";
+            String data  = URLEncoder.encode("driverid", "UTF-8") + "=" + URLEncoder.encode(driverID, "UTF-8");
+            data += "&" + URLEncoder.encode("userid", "UTF-8") + "=" + URLEncoder.encode(userID, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -57,24 +59,14 @@ public class GetPossibleVehicles extends AsyncTask<String,Void,String> {
 
         }
         catch(Exception e){
-            return new String("Exceptionzzz: " + e.getMessage());
+            return new String("Exception: " + e.getMessage());
         }
 
     }
 
     @Override
     protected void onPostExecute(String result){
-        Log.i("Result -",result);
-        try{
-            JSONArray json  = new JSONArray(result);
-            activity.generateVehicleList(json);
-            activity.displayVehicleList();
-        }catch (Exception e){
-            Log.i("Result -",e.getMessage());
-        }
-
-
-
+        Log.i("Result ::::::::",result);
     }
 
 

@@ -29,16 +29,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Maker : "
+                android:text="Name : "
                 android:id="@+id/maker_field"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Model : "
-                android:id="@+id/model_field"
-                android:layout_below="@+id/maker_field"
-                android:layout_alignRight="@+id/maker_field" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,6 +64,15 @@
                 android:layout_toEndOf="@+id/seatings_field"
                 android:id="@+id/seating_value"
                 android:layout_below="@+id/model_field" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender : "
+                android:id="@+id/model_field"
+                android:layout_below="@+id/maker_field"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
         </RelativeLayout>
 

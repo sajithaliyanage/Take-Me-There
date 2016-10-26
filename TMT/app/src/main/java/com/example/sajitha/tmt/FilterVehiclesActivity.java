@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,34 +24,49 @@ public class FilterVehiclesActivity extends AppCompatActivity{
     Context context;
     LoginSession sessionLogin;
     SharedPreferences sharedPreferences;
+    String[] names;
+    int[] driverId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_vehicles);
-        generateVehicleList();
-        displayVehicleList();
+        //generateVehicleList();
+        //displayVehicleList();
         context = this;
         sessionLogin = new LoginSession(context);
         sharedPreferences = sessionLogin.sharedpreferences;
 
         int userid = sessionLogin.sharedpreferences.getInt("userid",0);
-        new GetPossibleVehicles(context).execute(userid+"");
+        new GetPossibleVehicles(context,this).execute(userid+"");
     }
 
-    private void displayVehicleList() {
+    public void displayVehicleList() {
         ArrayAdapter<Vehicle> adapter = new MyListAdapter();
         ListView listview = (ListView)findViewById(R.id.vehicle_list);
         listview.setAdapter(adapter);
     }
 
-    private void generateVehicleList() {
+    public void generateVehicleList(JSONArray jobj) {
+        names = new String[jobj.length()];
+        driverId = new int[jobj.length()];
+        for(int i=0;i<jobj.length();i++){
+            try{
+                JSONObject object = jobj.getJSONObject(i);
+                names[i] = object.getString("name");
+                driverId[i] = object.getInt("user_id");
+                selected_vehicles.add(new Vehicle(object.getString("name"),object.getString("user_gender"),i+4,object.getInt("user_id"), Float.parseFloat("48.854"),true));
+            }catch (Exception e){
+                Log.i("Error",e.getMessage());
+            }
 
-        selected_vehicles.add(new Vehicle("BMW","M5",4,65564, Float.parseFloat("48.854")));
-        selected_vehicles.add(new Vehicle("AUDI","M5",4,2232, Float.parseFloat("48.854")));
-        selected_vehicles.add(new Vehicle("MERCEDES BENZ","E300",4,343123, Float.parseFloat("48.854")));
-        selected_vehicles.add(new Vehicle("TOYOTA","PRIUS",4,3532, Float.parseFloat("48.854")));
-        selected_vehicles.add(new Vehicle("TOYOTA","PRIUS",4,3532, Float.parseFloat("48.854")));
+        }
+
+//        selected_vehicles.add(new Vehicle("BMW","M5",4,65564, Float.parseFloat("48.854")));
+//        selected_vehicles.add(new Vehicle("AUDI","M5",4,2232, Float.parseFloat("48.854")));
+//        selected_vehicles.add(new Vehicle("MERCEDES BENZ","E300",4,343123, Float.parseFloat("48.854")));
+//        selected_vehicles.add(new Vehicle("TOYOTA","PRIUS",4,3532, Float.parseFloat("48.854")));
+//        selected_vehicles.add(new Vehicle("TOYOTA","PRIUS",4,3532, Float.parseFloat("48.854")));
 
     }
 
@@ -79,7 +97,7 @@ public class FilterVehiclesActivity extends AppCompatActivity{
             txtSeating.setText(Integer.toString(current_vehicle.getAvailable_seats()));
 
             TextView txt_ac = (TextView)itemview.findViewById(R.id.ac_value);
-            txt_ac.setText(Boolean.toString(current_vehicle.isAc()));
+            txt_ac.setText(current_vehicle.isAc()?"Available":"Unavailable");
 
             //TextView txt_speed = (TextView)itemview.findViewById(R.id.speed_value);
             //txt_speed.setText(Float.toString(current_vehicle.getAvarage_speed()));
@@ -92,7 +110,9 @@ public class FilterVehiclesActivity extends AppCompatActivity{
                 public void onClick(View v) {
                     Log.i("saved","Done");
                     Intent intent = new Intent(context,SelectedDriverActivity.class);
-                    intent.putExtra("dest_lat",v.getId());
+                    intent.putExtra("driverName",names[v.getId()]);
+                    intent.putExtra("driverId",driverId[v.getId()]);
+                    //intent.putExtra("cname",);
                     context.startActivity(intent);
                 }
             });

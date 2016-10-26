@@ -5,9 +5,11 @@ package com.example.sajitha.tmt;
  */
 
 public class Vehicle {
-    public Vehicle(String maker, String model, int total_seats, int driver_id, float rate) {
+    public Vehicle(String maker, String model, int total_seats, int driver_id, float rate,boolean ac) {
         Maker = maker;
         Model = model;
+        this.ac = ac;
+        this.setAvailable_seats(total_seats);
         this.total_seats = total_seats;
         this.driver_id = driver_id;
         this.rate = rate;
