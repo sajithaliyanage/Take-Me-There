@@ -5,7 +5,7 @@
     android:id="@+id/activity_driver_vehicle_selection"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_background"
+    android:background="#323232"
     android:orientation="vertical"
     android:layout_marginTop="55dp"
     tools:context="com.example.sajitha.tmt.DriverSetActivity">
@@ -45,7 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="31.4dp"
                 android:layout_marginTop="1dp"
-                android:id="@+id/button" />
+                android:id="@+id/addVechicle"
+                android:clickable="true" />
 
         </LinearLayout>
 

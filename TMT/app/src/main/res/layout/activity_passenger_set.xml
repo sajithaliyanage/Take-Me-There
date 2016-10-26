@@ -390,7 +390,7 @@
 
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:textAlignment="textEnd" />
+            android:layout_gravity="right" />
 
 
 
@@ -401,6 +401,7 @@
         android:layout_weight="1"
         android:layout_height="0dp" />
     <Button
+        android:id="@+id/continues"
         android:background="#212121"
         android:textColor="#FFD700"
         android:text="Continue"

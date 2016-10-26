@@ -32,6 +32,8 @@ public class PassengerDestination extends AsyncTask<String,Void,String> {
             String latitude1 = (String)params[0];
             String longitude1 = (String)params[1];
             String userid = (String)params[2];
+            String clatitude1 = (String)params[3];
+            String clongitude1 = (String)params[4];
             //double latitude = Double.parseDouble(latitude1);
             //double longitude = Double.parseDouble(longitude1);
 
@@ -41,7 +43,9 @@ public class PassengerDestination extends AsyncTask<String,Void,String> {
             String link="http://hydrosaver.azurewebsites.net/takemethere/php/passengerConfirmDestination.php";
             String data  = URLEncoder.encode("latitude", "UTF-8") + "=" + URLEncoder.encode(latitude1, "UTF-8");
             data += "&" + URLEncoder.encode("longitude", "UTF-8") + "=" + URLEncoder.encode(longitude1, "UTF-8");
-            data += "&" + URLEncoder.encode("userd", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
+            data += "&" + URLEncoder.encode("userid", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
+            data += "&" + URLEncoder.encode("clatitude", "UTF-8") + "=" + URLEncoder.encode(clatitude1, "UTF-8");
+            data += "&" + URLEncoder.encode("clongitude", "UTF-8") + "=" + URLEncoder.encode(clongitude1, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();

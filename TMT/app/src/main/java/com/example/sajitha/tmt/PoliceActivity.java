@@ -71,71 +71,71 @@ public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallb
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng palce1 = new LatLng(6.8790253,79.8532312);
+        LatLng palce1 = new LatLng(6.8890253,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce1)
                 .title("Wellawatte Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce2 = new LatLng(6.8790253,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce2)
                 .title("Bambalapitiya Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce3 = new LatLng(6.8790253,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce3)
                 .title("Narahenpita Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce4 = new LatLng(6.9534142,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce4)
                 .title("Kotahena Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce5 = new LatLng(6.9205238,79.8584123);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce5)
                 .title("Peliyagoda Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce6 = new LatLng(6.9534142,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce6)
                 .title("Sri Lanka Police Headquarters")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce7 = new LatLng(6.9534142,79.8532312);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce7)
                 .title("City Traffic Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce8 = new LatLng(6.9274247,79.8316841);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce8)
                 .title("Slave Island Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce9 = new LatLng(6.9292349,79.8794954);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce9)
                 .title("Cinnamon Gardens Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce10 = new LatLng(6.9292349,79.8794954);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce10)
                 .title("Maradana Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
 
         LatLng palce11 = new LatLng(6.9292349,79.8794954);
         mPositionMarker = mMap.addMarker(new MarkerOptions()
                 .position(palce11)
                 .title("Welikada Police Station")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.police)));
     }
 
     private void setUpMapIfNeeded() {

@@ -69,12 +69,10 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drive_mode_activity);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-        //.findFragmentById(R.id.map);
-        //mapFragment.getMapAsync(this);
         context = this;
         activity = this;
+        sessionLogin = new LoginSession(context);
+        sharedPreferences = sessionLogin.sharedpreferences;
 
         //left navigate drawer set
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -89,10 +87,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         setUpMapIfNeeded();
-
-
         tvDistanceDuration = (TextView) findViewById(R.id.tv_distance_time);
 
         // Initializing
@@ -106,66 +101,6 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
         mMap.animateCamera(zoom);
 
-
-        // Setting onclick event listener for the map
-//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
-//            @Override
-//            public void onMapClick(LatLng point) {
-
-                // Already two locations
-//                if (markerPoints.size() > 1) {
-//                    markerPoints.clear();
-//                    mMap.clear();
-//                }
-
-                // Adding new item to the ArrayList
-//                markerPoints.add(point);
-//
-//                // Creating MarkerOptions
-//                MarkerOptions options = new MarkerOptions();
-//
-//                // Setting the position of the marker
-//                options.position(point);
-//                options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//                LatLng dest = markerPoints.get(1);
-//
-//                // Getting URL to the Google Directions API
-//                String url = getDirectionsUrl(current, dest);
-//
-//                DownloadTask downloadTask = new DownloadTask();
-//
-//                // Start downloading json data from Google Directions API
-//                downloadTask.execute(url);
-//                mMap.addMarker(options);
-                /**
-                 * For the start location, the color of marker is GREEN and
-                 * for the end location, the color of marker is RED.
-                 */
-//                if (markerPoints.size() == 1) {
-//                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-//                } else if (markerPoints.size() == 2) {
-//
-//                }
-
-                // Add new marker to the Google Map Android API V2
-
-
-                // Checks, whether start and end locations are captured
-//                if (markerPoints.size() >= 2) {
-//                    //LatLng origin = markerPoints.get(0);
-//                    LatLng dest = markerPoints.get(1);
-//
-//                    // Getting URL to the Google Directions API
-//                    String url = getDirectionsUrl(current, dest);
-//
-//                    DownloadTask downloadTask = new DownloadTask();
-//
-//                    // Start downloading json data from Google Directions API
-//                    downloadTask.execute(url);
-//                }
-//            }
-//        });
         Bundle extras = getIntent().getExtras();
 
         if(extras == null) {
@@ -189,17 +124,24 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         // Setting the position of the marker
         options.position(destination);
         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        //LatLng dest = markerPoints.get(1);
-
-        // Getting URL to the Google Directions API
-//        String url = getDirectionsUrl(current, destination);
-//
-//        DownloadTask downloadTask = new DownloadTask();
-//
-//        // Start downloading json data from Google Directions API
-//        downloadTask.execute(url);
         mMap.addMarker(options);
 
+
+        final Handler h = new Handler();
+        h.postDelayed(new Runnable()
+        {
+            private long time = 0;
+
+            @Override
+            public void run()
+            {
+                int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+                new UpdateCurrentLocation(context).execute(userid+"",current.latitude+"",current.longitude+"");
+                time += 2000;
+                Log.d("TimerExample", "Going for... " + time);
+                h.postDelayed(this, 2000);
+            }
+        }, 1000);
     }
 
     @Override
@@ -257,7 +199,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
                                     .position(current)
                                     .title("My Location")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.man)));
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pasenger)));
                         }else{
                             mPositionMarker = mMap.addMarker(new MarkerOptions()
                                     .position(current)
@@ -499,13 +441,4 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     }
 
 
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//    }
 }

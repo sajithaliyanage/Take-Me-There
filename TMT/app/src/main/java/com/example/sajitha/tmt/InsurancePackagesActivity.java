@@ -8,13 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class PassengerSetActivity extends AppCompatActivity implements View.OnClickListener  {
+public class InsurancePackagesActivity extends AppCompatActivity implements View.OnClickListener  {
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_set);
+        setContentView(R.layout.activity_insurance_packages);
         context = this;
 
         Button one = (Button) findViewById(R.id.continues);
@@ -25,11 +25,10 @@ public class PassengerSetActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.continues:
-                Log.i("Insurance ","ynna");
-                    Intent intent1 = new Intent(PassengerSetActivity.this,InsurancePackagesActivity.class);
-                    startActivity(intent1);
-                    break;
-                }
+                Intent intent1 = new Intent(context,FilterVehiclesActivity.class);
+                context.startActivity(intent1);
+                break;
+        }
 
     }
 }

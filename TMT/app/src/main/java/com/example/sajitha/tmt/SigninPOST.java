@@ -69,7 +69,7 @@ public class SigninPOST extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         String[] values = result.split(",");
-        Log.i("Loggin - success", values[0]);
+        Log.i("Loggin - success", values[0]+":::::::::"+values[1]);
         //Log.i("Loggin2 - success", values[1]);
 
         if(values[0].equals("done")){
