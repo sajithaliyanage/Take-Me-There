@@ -10,6 +10,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -22,6 +23,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +56,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DriveModeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    private List<PassengerRequest> requested_passenger = new ArrayList<PassengerRequest>();
     private GoogleMap mMap;
     Context context;
     Activity activity;
@@ -60,17 +65,18 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     SharedPreferences sharedPreferences;
     LatLng current,destination;
     ArrayList<LatLng> markerPoints;
-    TextView tvDistanceDuration;
+    TextView tvDistanceDuration,tvDistanceDuration1;
     double dest_lat,dest_lng;
     boolean isPathSet=false;
     boolean isCentered=false;
-
+    DriveModeActivity dModeActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drive_mode_activity);
         context = this;
         activity = this;
+        dModeActivity = this;
         sessionLogin = new LoginSession(context);
         sharedPreferences = sessionLogin.sharedpreferences;
 
@@ -88,7 +94,8 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         navigationView.setNavigationItemSelectedListener(this);
 
         setUpMapIfNeeded();
-        tvDistanceDuration = (TextView) findViewById(R.id.tv_distance_time);
+        tvDistanceDuration = (TextView) findViewById(R.id.textView7);
+        tvDistanceDuration1 = (TextView) findViewById(R.id.textView80);
 
         // Initializing
         markerPoints = new ArrayList<LatLng>();
@@ -137,11 +144,15 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
             {
                 int userid = sessionLogin.sharedpreferences.getInt("userid",0);
                 new UpdateCurrentLocation(context).execute(userid+"",current.latitude+"",current.longitude+"");
+                new GetRequestedPassengers(context,dModeActivity).execute(userid+"");
                 time += 2000;
                 Log.d("TimerExample", "Going for... " + time);
                 h.postDelayed(this, 2000);
             }
         }, 1000);
+
+        generatePassengerRequestList();
+        displayPassengerRequestList();
     }
 
     @Override
@@ -390,7 +401,8 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
                 lineOptions.color(Color.RED);
             }
 
-            tvDistanceDuration.setText("Distance:" + distance + ", Duration:" + duration);
+            tvDistanceDuration.setText(distance);
+            tvDistanceDuration1.setText(duration);
 
             // Drawing polyline in the Google Map for the i-th route
             mMap.addPolyline(lineOptions);
@@ -438,6 +450,48 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void displayPassengerRequestList() {
+        ArrayAdapter<PassengerRequest> adapter = new MyListAdapter();
+        ListView listview = (ListView)findViewById(R.id.passenger_request_list);
+        listview.setAdapter(adapter);
+    }
+
+    private void generatePassengerRequestList() {
+        requested_passenger.add(new PassengerRequest(4545,"sulochana",54545,"Male",4.5,56,5));
+        requested_passenger.add(new PassengerRequest(4545,"sulochana1",54545,"Male",4.5,56,5));
+        requested_passenger.add(new PassengerRequest(4545,"sulochana2",54545,"Male",4.5,56,5));
+        requested_passenger.add(new PassengerRequest(4545,"sulochana3",54545,"Male",4.5,56,5));
+        requested_passenger.add(new PassengerRequest(4545,"sulochana4",54545,"Male",4.5,56,5));
+        requested_passenger.add(new PassengerRequest(4545,"sulochana5",54545,"Male",4.5,56,5));
+        requested_passenger.add(new PassengerRequest(4545,"sulochana6",54545,"Male",4.5,56,5));
+    }
+
+    private class MyListAdapter extends ArrayAdapter<PassengerRequest> {
+
+        public MyListAdapter(){
+            super(DriveModeActivity.this,R.layout.passenger_request_list_item,requested_passenger);
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @param position
+         * @param convertView
+         * @param parent
+         */
+        @NonNull
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View itemview = convertView;
+            if (itemview==null){
+                itemview = getLayoutInflater().inflate(R.layout.passenger_request_list_item,parent,false);
+            }
+
+            PassengerRequest current_passenger = requested_passenger.get(position);
+            return itemview;
+        }
     }
 
 
