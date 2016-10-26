@@ -66,8 +66,8 @@ public class GetRequestedPassengers extends AsyncTask<String,Void,String> {
         Log.i("Result -",result);
         try{
             JSONArray json  = new JSONArray(result);
-            //activity.generateVehicleList(json);
-            //activity.displayVehicleList();
+            activity.generatePassengerRequestList(json);
+            activity.displayPassengerRequestList();
         }catch (Exception e){
             Log.i("Result -",e.getMessage());
         }

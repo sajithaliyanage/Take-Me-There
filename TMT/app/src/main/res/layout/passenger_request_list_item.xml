@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/txtNameValue"
                     android:text="imsofukindunwit"
                     android:textColor="#000"
                     android:textSize="18dp"

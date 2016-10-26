@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 
@@ -70,6 +72,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     boolean isPathSet=false;
     boolean isCentered=false;
     DriveModeActivity dModeActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,8 +154,8 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
             }
         }, 1000);
 
-        generatePassengerRequestList();
-        displayPassengerRequestList();
+        //generatePassengerRequestList();
+        //displayPassengerRequestList();
     }
 
     @Override
@@ -409,13 +412,6 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         }
     }
 
-
-
-
-
-
-
-
     //Navigation BAr
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -452,20 +448,35 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    private void displayPassengerRequestList() {
+    public void displayPassengerRequestList() {
         ArrayAdapter<PassengerRequest> adapter = new MyListAdapter();
         ListView listview = (ListView)findViewById(R.id.passenger_request_list);
         listview.setAdapter(adapter);
     }
+    String [] names;
+    int [] passengerIds;
+    public void generatePassengerRequestList(JSONArray jobj) {
+        names = new String[jobj.length()];
+        passengerIds = new int[jobj.length()];
+        for(int i=0;i<jobj.length();i++) {
+            try {
 
-    private void generatePassengerRequestList() {
-        requested_passenger.add(new PassengerRequest(4545,"sulochana",54545,"Male",4.5,56,5));
-        requested_passenger.add(new PassengerRequest(4545,"sulochana1",54545,"Male",4.5,56,5));
-        requested_passenger.add(new PassengerRequest(4545,"sulochana2",54545,"Male",4.5,56,5));
-        requested_passenger.add(new PassengerRequest(4545,"sulochana3",54545,"Male",4.5,56,5));
-        requested_passenger.add(new PassengerRequest(4545,"sulochana4",54545,"Male",4.5,56,5));
-        requested_passenger.add(new PassengerRequest(4545,"sulochana5",54545,"Male",4.5,56,5));
-        requested_passenger.add(new PassengerRequest(4545,"sulochana6",54545,"Male",4.5,56,5));
+                JSONObject object = jobj.getJSONObject(i);
+                names[i] = object.getString("user_name");
+                passengerIds[i] = object.getInt("user_id");
+                requested_passenger = new ArrayList<PassengerRequest>();
+                requested_passenger.add(new PassengerRequest(object.getInt("user_id"), object.getString("user_name"), 54545, object.getString("user_gender"),(i+3)%5,56,5));
+            } catch (Exception e) {
+                Log.i("Error", e.getMessage());
+            }
+        }
+        LinearLayout lls = (LinearLayout)findViewById(R.id.requestListArea);
+        Toast.makeText(this,Integer.toString(lls.getId()),Toast.LENGTH_LONG);
+        if(jobj.length()==0){
+            lls.setVisibility(View.INVISIBLE);
+        }else{
+            lls.setVisibility(View.VISIBLE);
+        }
     }
 
     private class MyListAdapter extends ArrayAdapter<PassengerRequest> {
@@ -488,6 +499,9 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
             if (itemview==null){
                 itemview = getLayoutInflater().inflate(R.layout.passenger_request_list_item,parent,false);
             }
+            PassengerRequest cp = requested_passenger.get(position);
+            TextView txtname = (TextView)itemview.findViewById(R.id.txtNameValue);
+            txtname.setText(cp.getName());
 
             PassengerRequest current_passenger = requested_passenger.get(position);
             return itemview;
