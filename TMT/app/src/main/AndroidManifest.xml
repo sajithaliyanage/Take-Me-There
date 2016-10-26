@@ -50,14 +50,21 @@ package="com.example.sajitha.tmt">
 
     <activity android:name=".SelectRoleActivity" android:label="Select Your Mode" android:theme="@style/AppTheme.NoActionBar" />
 
-    <activity android:name=".ProfileActivity" android:label="@string/title_activity_profile"
+    <activity android:name=".ProfileActivity"
+        android:label="@string/title_activity_profile"
         android:theme="@style/AppTheme.NoActionBar" />
 
-    <activity android:name=".DriverSetActivity" android:label="@string/title_activity_profile"
+    <activity android:name=".DriverSetActivity"
+        android:label="@string/title_activity_profile"
         android:theme="@style/AppTheme.NoActionBar" />
 
-    <activity android:name=".DriveModeActivity" android:label="@string/title_activity_dreive_mode"
+    <activity android:name=".DriveModeActivity"
+        android:label="@string/title_activity_dreive_mode"
         android:theme="@style/AppTheme.NoActionBar" />
+
+    <activity android:name=".InsuranceActivity" android:label="@string/insurance" android:theme="@style/AppTheme.NoActionBar" />
+
+    <activity android:name=".PoliceActivity" android:label="@string/police" android:theme="@style/AppTheme.NoActionBar" />
 
     <activity android:name=".PassengerSetActivity" />
 

@@ -25,11 +25,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Chat" />
         <item
-            android:id="@+id/nav_slideshow2"
+            android:id="@+id/emergency"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Emergency" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/insurance"
             android:icon="@drawable/ic_menu_manage"
             android:title="Insurance" />
         <item
