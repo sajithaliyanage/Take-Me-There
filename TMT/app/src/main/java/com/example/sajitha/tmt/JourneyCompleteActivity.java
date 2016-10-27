@@ -7,26 +7,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class BothAcceptActivity extends AppCompatActivity implements View.OnClickListener {
+public class JourneyCompleteActivity extends AppCompatActivity implements View.OnClickListener  {
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_both_accept);
+        setContentView(R.layout.activity_journey_complete);
         context = this;
 
-        Button one1 = (Button) findViewById(R.id.driverCamed);
+        Button one1 = (Button) findViewById(R.id.finish);
         one1.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.driverCamed:
-                Intent intent = new Intent(context,JourneyCompleteActivity.class);
+            case R.id.finish:
+                Intent intent = new Intent(context,ReviewActivity.class);
                 context.startActivity(intent);
                 break;
 
         }
     }
+
+
+
 }

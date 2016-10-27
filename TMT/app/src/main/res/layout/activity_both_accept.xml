@@ -52,6 +52,7 @@
         android:background="#212121"
         android:textColor="#FFD700"
         android:text="Driver arrived"
+        android:id="@+id/driverCamed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
