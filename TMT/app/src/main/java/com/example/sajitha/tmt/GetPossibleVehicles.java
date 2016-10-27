@@ -71,6 +71,8 @@ public class GetPossibleVehicles extends AsyncTask<String,Void,String> {
             activity.displayVehicleList();
         }catch (Exception e){
             Log.i("Result -",e.getMessage());
+        }finally {
+
         }
 
 

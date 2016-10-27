@@ -3,6 +3,7 @@ package com.example.sajitha.tmt;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,13 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilterVehiclesActivity extends AppCompatActivity{
-    private List<Vehicle> selected_vehicles = new ArrayList<Vehicle>();
+    private List<Vehicle> selected_vehicles;
     Context context;
     LoginSession sessionLogin;
     SharedPreferences sharedPreferences;
     String[] names;
     int[] driverId;
-
+    int userid;
+    FilterVehiclesActivity fva;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +38,29 @@ public class FilterVehiclesActivity extends AppCompatActivity{
         context = this;
         sessionLogin = new LoginSession(context);
         sharedPreferences = sessionLogin.sharedpreferences;
+        fva = this;
+        userid = sessionLogin.sharedpreferences.getInt("userid",0);
 
-        int userid = sessionLogin.sharedpreferences.getInt("userid",0);
-        new GetPossibleVehicles(context,this).execute(userid+"");
+
+        final Handler h = new Handler();
+        h.postDelayed(new Runnable()
+        {
+            private long time = 0;
+
+            @Override
+            public void run()
+            {
+
+                //int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+                new GetPossibleVehicles(context,fva).execute(userid+"");
+
+                //new UpdateCurrentLocation(context).execute(userid+"",current.latitude+"",current.longitude+"");
+                //new GetRequestedPassengers(context,).execute(userid+"");
+                time += 2000;
+                Log.d("TimerExample", "Going for... " + time);
+                h.postDelayed(this, 2000);
+            }
+        }, 1000);
     }
 
     public void displayVehicleList() {
@@ -50,6 +72,7 @@ public class FilterVehiclesActivity extends AppCompatActivity{
     public void generateVehicleList(JSONArray jobj) {
         names = new String[jobj.length()];
         driverId = new int[jobj.length()];
+        selected_vehicles = new ArrayList<Vehicle>();
         for(int i=0;i<jobj.length();i++){
             try{
                 JSONObject object = jobj.getJSONObject(i);

@@ -3,6 +3,7 @@ package com.example.sajitha.tmt;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -72,6 +73,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     boolean isPathSet=false;
     boolean isCentered=false;
     DriveModeActivity dModeActivity;
+    int[] driverId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -471,7 +473,8 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
             }
         }
         LinearLayout lls = (LinearLayout)findViewById(R.id.requestListArea);
-        Toast.makeText(this,Integer.toString(lls.getId()),Toast.LENGTH_LONG);
+        //Toast.makeText(this,Integer.toString(lls.getId()),Toast.LENGTH_LONG);
+        Log.i("Layout - :::::",jobj.length()+"");
         if(jobj.length()==0){
             lls.setVisibility(View.INVISIBLE);
         }else{
@@ -504,6 +507,18 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
             txtname.setText(cp.getName());
 
             PassengerRequest current_passenger = requested_passenger.get(position);
+            itemview.setId(position);
+            itemview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("saved","Done");
+                    Intent intent = new Intent(context,PassengerApprovedByDriverActivity.class);
+                    intent.putExtra("driverName",names[v.getId()]);
+                    intent.putExtra("driverId",driverId[v.getId()]);
+                    //intent.putExtra("cname",);
+                    context.startActivity(intent);
+                }
+            });
             return itemview;
         }
     }

@@ -92,12 +92,11 @@
         <activity
             android:name=".AddRemoveVehicle"
             android:label="@string/addVechicle" />
-
         <activity android:name=".SelectedDriverActivity" />
-
         <activity android:name=".InsurancePackagesActivity" />
-
-        <activity android:name=".FilterVehiclesActivity"/>
+        <activity android:name=".FilterVehiclesActivity" />
+        <activity android:name=".WaitingForDriverActivity" />
+        <activity android:name=".PassengerApprovedByDriverActivity"></activity>
     </application>
 
 </manifest>

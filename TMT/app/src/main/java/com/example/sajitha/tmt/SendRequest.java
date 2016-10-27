@@ -1,6 +1,7 @@
 package com.example.sajitha.tmt;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +68,8 @@ public class SendRequest extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         Log.i("Result ::::::::",result);
+        Intent intent = new Intent(context,WaitingForDriverActivity.class);;
+        context.startActivity(intent);
     }
 
 
