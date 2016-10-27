@@ -27,7 +27,7 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.report:
-                Intent intent = new Intent(context,JourneyCompleteActivity.class);
+                Intent intent = new Intent(context,BadReviewActivity.class);
                 context.startActivity(intent);
                 break;
 
