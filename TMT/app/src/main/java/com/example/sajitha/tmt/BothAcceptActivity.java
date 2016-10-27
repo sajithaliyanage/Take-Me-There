@@ -15,14 +15,14 @@ public class BothAcceptActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_both_accept);
         context = this;
 
-        Button one1 = (Button) findViewById(R.id.driverCamed);
+        Button one1 = (Button) findViewById(R.id.btn_picked_me_up);
         one1.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.driverCamed:
+            case R.id.btn_picked_me_up:
                 Intent intent = new Intent(context,JourneyCompleteActivity.class);
                 context.startActivity(intent);
                 break;
