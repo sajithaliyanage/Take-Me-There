@@ -99,7 +99,8 @@
         <activity android:name=".PassengerApprovedByDriverActivity" />
         <activity android:name=".BothAcceptActivity" />
         <activity android:name=".JourneyCompleteActivity" />
-        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".ReviewActivity" />
+        <activity android:name=".BadReviewActivity"></activity>
     </application>
 
 </manifest>
