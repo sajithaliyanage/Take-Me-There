@@ -24,7 +24,7 @@ public class WaitingForDriverActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cancelButton:
-                Intent intent1 = new Intent(context,SelectedDriverActivity.class);
+                Intent intent1 = new Intent(context,SelectRoleActivity.class);
                 context.startActivity(intent1);
                 break;
         }

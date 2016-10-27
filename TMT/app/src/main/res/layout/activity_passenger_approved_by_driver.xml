@@ -17,10 +17,11 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="#ff0000"
-            android:id="@+id/ratingBar"
+            android:progressTint="#ffca28"
+            android:progressBackgroundTint="#ffc107"
             android:numStars="5"
-            android:rating="4.2"
+            android:rating="0"
+            android:id="@+id/ratingBar"
             android:isIndicator="false"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content" />
@@ -348,6 +349,7 @@
         android:layout_height="wrap_content">
         <Button
             android:background="#76FF03"
+            android:id="@+id/accept"
             android:text="Accept"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -355,6 +357,7 @@
 
         <Button
             android:text="Reject"
+              android:id="@+id/reject"
             android:background="#FF5722"
             android:layout_weight="1"
             android:layout_width="0dp"

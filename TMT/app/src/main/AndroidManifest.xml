@@ -96,7 +96,8 @@
         <activity android:name=".InsurancePackagesActivity" />
         <activity android:name=".FilterVehiclesActivity" />
         <activity android:name=".WaitingForDriverActivity" />
-        <activity android:name=".PassengerApprovedByDriverActivity"></activity>
+        <activity android:name=".PassengerApprovedByDriverActivity" />
+        <activity android:name=".BothAcceptActivity"></activity>
     </application>
 
 </manifest>

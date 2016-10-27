@@ -459,12 +459,14 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     int [] passengerIds;
     public void generatePassengerRequestList(JSONArray jobj) {
         names = new String[jobj.length()];
+        //driverId = new int[jobj.length()];
         passengerIds = new int[jobj.length()];
         for(int i=0;i<jobj.length();i++) {
             try {
 
                 JSONObject object = jobj.getJSONObject(i);
                 names[i] = object.getString("user_name");
+                //driverId[i] = object.getInt("user_id");
                 passengerIds[i] = object.getInt("user_id");
                 requested_passenger = new ArrayList<PassengerRequest>();
                 requested_passenger.add(new PassengerRequest(object.getInt("user_id"), object.getString("user_name"), 54545, object.getString("user_gender"),(i+3)%5,56,5));
@@ -514,7 +516,9 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
                     Log.i("saved","Done");
                     Intent intent = new Intent(context,PassengerApprovedByDriverActivity.class);
                     intent.putExtra("driverName",names[v.getId()]);
-                    intent.putExtra("driverId",driverId[v.getId()]);
+                    intent.putExtra("passengerid",passengerIds[v.getId()]);
+                    intent.putExtra("dest_lat",dest_lat);
+                    intent.putExtra("dest_lng",dest_lng);
                     //intent.putExtra("cname",);
                     context.startActivity(intent);
                 }
