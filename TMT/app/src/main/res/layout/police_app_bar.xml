@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/insurance_content" />
+    <include layout="@layout/police_content" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -100,7 +100,8 @@
         <activity android:name=".BothAcceptActivity" />
         <activity android:name=".JourneyCompleteActivity" />
         <activity android:name=".ReviewActivity" />
-        <activity android:name=".BadReviewActivity"></activity>
+        <activity android:name=".BadReviewActivity" />
+        <activity android:name=".PassengerJourneyScreenActivity"></activity>
     </application>
 
 </manifest>

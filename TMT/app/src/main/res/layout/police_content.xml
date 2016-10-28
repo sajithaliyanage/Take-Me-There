@@ -19,22 +19,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PRESS BUTTON"
-        android:id="@+id/confirmDesti"
+        android:id="@+id/emergencys"
         android:background="#c90808"
         android:textColor="#fff"
         android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textStyle="bold"
         android:clickable="true"
         android:onClick="confirmDestination"
         android:height="60dp"
 
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.sajitha.tmt;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -28,13 +31,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener {
+public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
     private GoogleMap mMap;
     private Marker mPositionMarker;
     Context context;
     SharedPreferences sharedPreferences;
     LoginSession sessionLogin;
     boolean isCentered,userMode=false;
+    LatLng current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,9 @@ public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallb
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Button one = (Button) findViewById(R.id.emergencys);
+        one.setOnClickListener(this);
 
         setUpMapIfNeeded();
 
@@ -161,7 +168,7 @@ public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallb
                     public void onMyLocationChange(Location arg0) {
                         Log.i("Google Maps","location changed");
                         // TODO Auto-generated method stub
-                        LatLng current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
+                        current = new LatLng(arg0.getLatitude(), arg0.getLongitude());
                         CameraUpdate center = CameraUpdateFactory.newLatLng(current);
                         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
                         if(mPositionMarker!=null){
@@ -225,6 +232,17 @@ public class PoliceActivity extends AppCompatActivity implements OnMapReadyCallb
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.emergencys:
+                int userid = sessionLogin.sharedpreferences.getInt("userid",0);
+                new SendAlerts(context).execute(userid+"",current.latitude+"",current.longitude+"");
+                break;
+        }
+
     }
 }
 

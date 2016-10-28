@@ -30,6 +30,7 @@ public class FilterVehiclesActivity extends AppCompatActivity{
     int userid;
     FilterVehiclesActivity fva;
     int result;
+    TextView one;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class FilterVehiclesActivity extends AppCompatActivity{
         sharedPreferences = sessionLogin.sharedpreferences;
         fva = this;
         userid = sessionLogin.sharedpreferences.getInt("userid",0);
-        TextView one = (TextView) findViewById(R.id.results);
+        one = (TextView) findViewById(R.id.results);
 
         if(result!=0){
             one.setText("");
@@ -82,6 +83,11 @@ public class FilterVehiclesActivity extends AppCompatActivity{
         driverId = new int[jobj.length()];
         selected_vehicles = new ArrayList<Vehicle>();
         result = jobj.length();
+        if(result!=0){
+            one.setText("");
+        }else{
+            one.setText("There is no any vehicle for you!");
+        }
         for(int i=0;i<jobj.length();i++){
             try{
                 JSONObject object = jobj.getJSONObject(i);

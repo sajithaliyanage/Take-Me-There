@@ -35,16 +35,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class BothAcceptActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+public class PassengerJourneyScreenActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
     private GoogleMap mMap;
     private Marker mPositionMarker;
     Context context;
     SharedPreferences sharedPreferences;
     LoginSession sessionLogin;
-    Geocoder geocoder;
-    List<Address> yourAddresses;
-    String address,city,yourCountry;
-    String finalDest;
     Activity activity;
     double latitude, longitude;
     boolean isCentered,userMode=false;
@@ -53,14 +49,15 @@ public class BothAcceptActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_both_accept);
+        setContentView(R.layout.activity_passenger_journey_screen);
         context = this;
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Button one1 = (Button) findViewById(R.id.btn_picked_me_up);
+        Button one1 = (Button) findViewById(R.id.finished);
         one1.setOnClickListener(this);
 
         setUpMapIfNeeded();
@@ -69,8 +66,8 @@ public class BothAcceptActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_picked_me_up:
-                Intent intent = new Intent(context,PassengerJourneyScreenActivity.class);
+            case R.id.finished:
+                Intent intent = new Intent(context,JourneyCompleteActivity.class);
                 context.startActivity(intent);
                 break;
 
@@ -110,7 +107,7 @@ public class BothAcceptActivity extends AppCompatActivity implements View.OnClic
                     == PackageManager.PERMISSION_GRANTED) {
                 mMap.setMyLocationEnabled(true);
             } else {
-                Toast.makeText(BothAcceptActivity.this, "You have to accept to enjoy all app's services!", Toast.LENGTH_LONG).show();
+                Toast.makeText(PassengerJourneyScreenActivity.this, "You have to accept to enjoy all app's services!", Toast.LENGTH_LONG).show();
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED) {
                     mMap.setMyLocationEnabled(true);

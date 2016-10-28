@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_passenger_waiting_for_pick_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffd700"
+    tools:context="com.example.sajitha.tmt.PassengerJourneyScreenActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/abc_action_menu_layout" />
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="#ddffd700"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="5.3 KM"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:textSize="32sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:text="distance away"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textColor="#323232"
+                        android:textAllCaps="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="42min"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:textSize="32sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:text="Time of arrival"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textColor="#323232"
+                        android:textAllCaps="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/finished"
+            android:text="Finish journey"
+            android:background="#ddffd700"
+            android:textSize="16sp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:text="emergency"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/finissshed"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

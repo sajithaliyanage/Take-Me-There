@@ -65,6 +65,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     Activity activity;
     LoginSession sessionLogin;
     private Marker mPositionMarker;
+    private Marker userMarker=null;
     SharedPreferences sharedPreferences;
     LatLng current,destination;
     ArrayList<LatLng> markerPoints;
@@ -74,7 +75,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
     boolean isCentered=false;
     DriveModeActivity dModeActivity;
     int[] driverId;
-
+    String passengerID = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +122,7 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         } else {
             dest_lat= extras.getDouble("dest_lat");
             dest_lng=  extras.getDouble("dest_lng");
+            passengerID =  extras.getString("passenger");
 
         }
         Log.i("Lat - ", dest_lat+"");
@@ -150,6 +152,11 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
                 int userid = sessionLogin.sharedpreferences.getInt("userid",0);
                 new UpdateCurrentLocation(context).execute(userid+"",current.latitude+"",current.longitude+"");
                 new GetRequestedPassengers(context,dModeActivity).execute(userid+"");
+
+                if(passengerID != null){
+                    Log.i("Passenger Id", passengerID+"");
+                    new GetPassengersForDriver(context,dModeActivity).execute(passengerID+"");
+                }
                 time += 2000;
                 Log.d("TimerExample", "Going for... " + time);
                 h.postDelayed(this, 2000);
@@ -482,6 +489,27 @@ public class DriveModeActivity extends AppCompatActivity implements NavigationVi
         }else{
             lls.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void showPassengers(JSONObject object){
+        try{
+            //JSONObject object = jobj.getJSONObject(0);
+            double lat = object.getDouble("current_lat");
+            double lng  = object.getDouble("current_lng");
+            LatLng palce1 = new LatLng(lat,lng);
+            if(userMarker!=null){
+                userMarker.remove();
+            }
+            userMarker = mMap.addMarker(new MarkerOptions()
+                    .position(palce1)
+                    .title("Your Passenger")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pasenger)));
+        }catch (Exception e){
+
+        }
+
+
+
     }
 
     private class MyListAdapter extends ArrayAdapter<PassengerRequest> {

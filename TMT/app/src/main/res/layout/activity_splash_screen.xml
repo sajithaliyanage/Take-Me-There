@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="#ffd700"
+    android:background="@drawable/splashscreen"
     tools:context="com.example.sajitha.tmt.Splashscreen">
 
     <TextView
@@ -19,34 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
-    <ImageView
-        app:srcCompat="@drawable/splash"
-        android:layout_width="match_parent"
-        android:layout_height="120dp" />
 
     <ProgressBar
+        android:layout_marginTop="-120dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar" />
 
     <TextView
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
-    <TextView
-        android:textColor="#323232"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="8sp"
-        android:text="Take Me There mobile application and all it's related system components are owned and developed by team whileLOOP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/logo_whileloop"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/imageView3" />
+
 
 </LinearLayout>

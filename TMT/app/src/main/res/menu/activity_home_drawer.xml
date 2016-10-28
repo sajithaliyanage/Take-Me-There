@@ -4,41 +4,41 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/home"
             android:title="Home" />
         <item
             android:id="@+id/mode"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/change_mode"
             android:title="Change Mode" />
         <item
             android:id="@+id/profile"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/myprofile"
             android:title="My Profile" />
 
         <item
             android:id="@+id/analysis"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/data_analysis"
             android:title="Data Analysis" />
 
         <item
             android:id="@+id/chatbox"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/chat"
             android:title="Chat" />
         <item
             android:id="@+id/emergency"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/emergency"
             android:title="Emergency" />
         <item
             android:id="@+id/insurance"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/insurance1"
             android:title="Insurance" />
         <item
             android:id="@+id/about"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/about_us"
             android:title="About Us" />
         <item
             android:id="@+id/logout"
-            android:icon="@drawable/ic_setting_dark"
+            android:icon="@drawable/logout"
             android:title="Logout" />
 
     </group>
