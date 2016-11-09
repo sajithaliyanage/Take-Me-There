@@ -327,7 +327,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle sXZXZxzxzz view item clicks here.
         int id = item.getItemId();
         StaticImports.navigate_menu(id,context);
 
